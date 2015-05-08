@@ -48,9 +48,10 @@ class Comprehender:
         return parsed_words_dict
 
 def main():
-    sample_c = Comprehender(u"ライ麦畑のつかまえ役、そういったものに僕はなりたいんだよ。馬鹿げてることは知ってるよ。でも、ほんとうになりたいものといったらそれしかないね。")
+    # sample_c = Comprehender(u"ライ麦畑のつかまえ役、そういったものに僕はなりたいんだよ。馬鹿げてることは知ってるよ。でも、ほんとうになりたいものといったらそれしかないね。")
+    sample_c = Comprehender(u"暗証番号")
     words_dict = sample_c.comprehend()
-    f = open("testout.txt", "w")
+    f = open("test/testout3.txt", "w")
     f.write("All: " + ", ".join(words_dict['all']).encode("utf-8") + "\n")
     f.write("Nouns: " + ", ".join(words_dict['nouns']).encode("utf-8") + "\n")
     f.write("Verbs: " + ", ".join(words_dict['verbs']).encode("utf-8") + "\n")
