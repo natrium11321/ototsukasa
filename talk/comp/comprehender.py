@@ -3,39 +3,32 @@
 
 import MeCab
 
-# ---- constants ----
+# ---- Constants ----
 MECAB_MODE = 'mecabrc'
 PARSE_TEXT_ENCODING = 'utf-8'
 
+# ---- Functions ----
 class Comprehender:
 
     # type comprehender = Content of unicode
-    def __init__(self, init_content):
-        self.content = init_content
+    def __init__(self, raw):
+        self.raw = raw
 
-    # unicode -> unit
+    # comprehend : unicode -> unit
     def comprehend(self):
-        words_dict = self.parse
-        print "All:", ",".join(words_dict['all'])
-        print "Nouns:", ",".join(words_dict['nouns'])
-        print "Verbs:", ",".join(words_dict['verbs'])
-        print "Adjs:", ",".join(words_dict['adjs'])
-        return
-    
-    # unicode -> {all:string, nouns:string, verbs:string, adjs:string}
-    def parse(self):
         tagger = MeCab.Tagger(MECAB_MODE)
-        # convert into string type
-        text = self.content.encode(PARSE_TEXT_ENCODING)
+        text = self.raw.encode(PARSE_TEXT_ENCODING)
+          #(convert into str type)
         node = tagger.parseToNode(text)
-    
+
         words = []
         nouns = []
         verbs = []
         adjs = []
+    
         while node:
             pos = node.feature.split(",")[0]
-            # unicode 型に戻す
+              #(decode to unicode)
             word = node.surface.decode("utf-8")
             if pos == "名詞":
                 nouns.append(word)
@@ -45,16 +38,26 @@ class Comprehender:
                 adjs.append(word)
             words.append(word)
             node = node.next
-
+    
         parsed_words_dict = {
             "all": words[1:-1], # 最初と最後には空文字列が入るので除去
             "nouns": nouns,
             "verbs": verbs,
-            "adjs": adjs
-            }
+            "adjs": adjs}
+    
         return parsed_words_dict
 
-### Execute                                                                                                                                                       
+def main():
+    sample_c = Comprehender(u"ライ麦畑のつかまえ役、そういったものに僕はなりたいんだよ。馬鹿げてることは知ってるよ。でも、ほんとうになりたいものといったらそれしかないね。")
+    words_dict = sample_c.comprehend()
+    f = open("testout.txt", "w")
+    f.write("All: " + ", ".join(words_dict['all']).encode("utf-8") + "\n")
+    f.write("Nouns: " + ", ".join(words_dict['nouns']).encode("utf-8") + "\n")
+    f.write("Verbs: " + ", ".join(words_dict['verbs']).encode("utf-8") + "\n")
+    f.write("Adjs: " + ", ".join(words_dict['adjs']).encode("utf-8") + "\n")
+    f.close()
+    return
+
+# ---- Execute ----
 if __name__ == "__main__":
-    c = Comprehender(u"今日も1日頑張るぞい！")
-    c.comprehend()
+    main()
