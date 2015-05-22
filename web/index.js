@@ -17,7 +17,7 @@ function initialize() {
   });
 
   var infowindow = new google.maps.InfoWindow({
-    content: "<h2>The University of Tokyo.</h2><p>status:Open</p><p>rate:4.0</p><p><a href='logout.html'>Reserve</a></p>"
+    content: '<h2>The University of Tokyo.</h2><p>status:Open</p><p>rate:4.0</p><p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="id" value="0"><input type="submit" value="予約"></form></p>'
   });
 
   google.maps.event.addListener(marker, 'click', function() {
