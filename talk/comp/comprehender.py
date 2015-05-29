@@ -25,7 +25,7 @@ class Comprehender:
         nouns = []
         verbs = []
         adjs = []
-    
+
         while node:
             pos = node.feature.split(",")[0]
               #(decode to unicode)
@@ -38,12 +38,11 @@ class Comprehender:
                 adjs.append(word)
             words.append(word)
             node = node.next
-    
+
         parsed_words_dict = {
             "all": words[1:-1], #(omit first and last spaces)
             "nouns": nouns,
             "verbs": verbs,
             "adjs": adjs}
-    
-        return parsed_words_dict
 
+        return parsed_words_dict
