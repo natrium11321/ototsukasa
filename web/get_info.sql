@@ -1,9 +1,12 @@
 SELECT
-  *
+  t.toilet_id
+  ,pos_lat
+  ,pos_lng
+  ,use_status
 FROM
   (
     SELECT
-      id
+      toilet_id
       ,pos_lat
       ,pos_lng
     FROM
@@ -12,7 +15,7 @@ FROM
 LEFT JOIN
   (
     SELECT
-      id
+      toilet_id
       ,use_status
     FROM
       toilet_status
@@ -25,9 +28,9 @@ LEFT JOIN
           toilet_status
           AS b
         WHERE
-          a.id = b.id
+          a.toilet_id = b.toilet_id
       )
   ) s
 ON
-  t.id = s.id
+  t.toilet_id = s.toilet_id
 ;
