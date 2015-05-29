@@ -9,23 +9,19 @@ PARSE_TEXT_ENCODING = 'utf-8'
 
 # ---- Functions ----
 class Comprehender:
+    def __init__(self):
+        self.tagger = MeCab.Tagger(MECAB_MODE)
+    #end def
 
-    # type comprehender = Content of unicode
-    def __init__(self, raw):
-        self.raw = raw
-
-    # comprehend : unicode -> unit
-    def comprehend(self):
-        tagger = MeCab.Tagger(MECAB_MODE)
-        text = self.raw.encode(PARSE_TEXT_ENCODING)
+    #( comprehend : Comprehender. -> unicode -> {"all" * "nouns" * "verbs" * "adjs"} )
+    def comprehend(self, raw):
+        text = raw.encode(PARSE_TEXT_ENCODING)
           #(convert into str type)
-        node = tagger.parseToNode(text)
-
+        node = self.tagger.parseToNode(text)
         words = []
         nouns = []
         verbs = []
         adjs = []
-
         while node:
             pos = node.feature.split(",")[0]
               #(decode to unicode)
@@ -36,8 +32,10 @@ class Comprehender:
                 verbs.append(word)
             elif pos == "形容詞":
                 adjs.append(word)
+            #end if
             words.append(word)
             node = node.next
+        #end while
 
         parsed_words_dict = {
             "all": words[1:-1], #(omit first and last spaces)
@@ -46,3 +44,5 @@ class Comprehender:
             "adjs": adjs}
 
         return parsed_words_dict
+    #end def
+#end class

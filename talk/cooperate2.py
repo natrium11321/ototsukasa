@@ -48,8 +48,8 @@ def main():
             norecogn = 0
             if mode == MODE_HOME:
 
-                cmprhdr = comprehender.Comprehender(result)
-                words_dict = cmprhdr.comprehend()
+                cmprhdr = comprehender.Comprehender()
+                words_dict = cmprhdr.comprehend(result)
                 print (", ".join(words_dict['all']).encode("utf-8"))
 
                 #( 超絶単純な判定によるコマンド認識 )
@@ -69,6 +69,8 @@ def main():
                 cmprhdr = comprehender.Comprehender(result)
                 words_dict = cmprhdr.comprehend()
                 print (", ".join(words_dict['all']).encode("utf-8"))
+
+                #( 検索機能を追加する )
 
                 mode = MODE_HOME
 
