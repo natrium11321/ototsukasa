@@ -1,0 +1,4 @@
+All: 暗証, 番号
+Nouns: 暗証, 番号
+Verbs: 
+Adjs: 

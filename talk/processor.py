@@ -23,7 +23,7 @@ def main():
         if mode == MODE_LOCKED:
             #(should be written)
             # * if 人感センサからの情報が陽性
-            # *    mode = MODE_UNLOCK
+            # *     mode = MODE_UNLOCK
             # * #end if
             pass
         else:
@@ -93,21 +93,21 @@ def main():
                 elif mode == MODE_SEARCH:
 
                     #(should be written)
-                    #( 検索機能を追加する )
+                    #( 検索：Drawnerを呼ぶ )
 
                     mode = MODE_HOME
 
                 elif mode == MODE_PLAY:
 
                     #(should be written)
-                    #( 再生機能を追加する )
+                    #( 再生：Drawnerを呼ぶ )
 
                     mode = MODE_HOME
 
                 elif mode == MODE_EVAL:
 
                     #(should be written)
-                    #( 評価を処理する )
+                    #( 評価処理：ReviewSenderを呼ぶ )
 
                     mode = MODE_HOME
 
