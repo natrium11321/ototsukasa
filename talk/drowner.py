@@ -1,5 +1,6 @@
-from Player import Player
-from YouTubeSearcher import YouTubeSearcher
+from database import Database
+from player import Player
+from you_tube_searcher import YouTubeSearcher
 
 class Drowner:
 	def __init__(self):
@@ -7,8 +8,12 @@ class Drowner:
 		player = Player()
 		return
 	def drown(self):
+		id = db.fetch_music_randomly()
+		player.play(id)
 		return
 	def drown(self, keyword):
 		id = searcher.search(keyword)
-		player.play(id)
+		if id:
+			db.register_music(keyword, id)
+			player.play(id)
 		return
