@@ -16,7 +16,7 @@ class Drowner:
 		return
 	
 	def drown(self, keyword):
-		id = searcher.search(keyword)
+		id = self.searcher.search(keyword)
 		if id:
 			self.db.register_music(keyword, id)
 			self.player.play(id)
