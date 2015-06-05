@@ -3,17 +3,21 @@ from player import Player
 from you_tube_searcher import YouTubeSearcher
 
 class Drowner:
-	def __init__(self):
-		searcher = YouTubeSearcher()
-		player = Player()
+	
+	def __init__(self, db):
+		self.db = db
+		self.searcher = YouTubeSearcher()
+		self.player = Player()
 		return
+	
 	def drown(self):
-		id = db.fetch_music_randomly()
-		player.play(id)
+		id = self.db.fetch_music_randomly()
+		self.player.play(id)
 		return
+	
 	def drown(self, keyword):
-		id = searcher.search(keyword)
+		id = self.searcher.search(keyword)
 		if id:
-			db.register_music(keyword, id)
-			player.play(id)
+			self.db.register_music(keyword, id)
+			self.player.play(id)
 		return
