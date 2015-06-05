@@ -1,6 +1,7 @@
 import listen.listen as listener
 import comp.comprehender as comprehender
 
+#( main unit -> unit )
 def main():
     print ("  'cooperate.py' is running.")
     lsnr = listener.Listener(600)
@@ -19,6 +20,7 @@ def main():
         print ("All: " + ", ".join(words_dict['all']).encode("utf-8") + "\n")
         print ("  end.")
     #end if
+    return
 #end def
 
 # ---- Execute ----
