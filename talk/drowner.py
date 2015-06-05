@@ -4,7 +4,8 @@ from you_tube_searcher import YouTubeSearcher
 
 class Drowner:
 	
-	def __init__(self):
+	def __init__(self, database):
+		db = database
 		searcher = YouTubeSearcher()
 		player = Player()
 		return
