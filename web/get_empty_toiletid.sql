@@ -1,15 +1,9 @@
 SELECT
-  pos_id
-  ,pos_lat
-  ,pos_lng
-  ,COUNT(*) AS num
-  ,COUNT(toilet_status = 'Empty' or NULL) AS empty_num
-  ,COUNT(toilet_status = 'Occupied' or NULL) AS occupied_num
-  ,COUNT(toilet_status = 'Reserved' or NULL) AS reserved_num
+  toilet_id
 FROM
   (
   SELECT
-    t.id
+    t.id AS toilet_id
     ,pos_id
     ,pos_lat
     ,pos_lng
@@ -66,6 +60,6 @@ FROM
   ON
     t.id = r.toilet_id
   ) sub
-GROUP BY
-  pos_id,pos_lat,pos_lng
-;
+WHERE
+  toilet_status = 'Empty' AND
+  pos_id =
