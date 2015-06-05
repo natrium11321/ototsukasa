@@ -56,16 +56,16 @@ class Database:
         return self.fetch(u'select * from musics order by rand() limit 1')[0]
 
     # post new review
-    def post_review(self, star, text):
+    #def post_review(self, star, text):
         # self.execute_and_commit(u'insert into reviews values(null, {0}, {1}, "{2}", now())'.format(30, star, text))
 
     # post new review
-    def fetch_lock_state(self):
-        return self.fetch(u'select * from reservations order by `time` limit 1')[0]
+    #def fetch_lock_state(self):
+    #    return self.fetch(u'select * from reservations order by `time` limit 1')[0]
 
 
 def main():
-    db = Database('157.82.5.218')
+    db = Database('157.82.6.126')
     music = db.fetch_music_randomly()
 
     print music['url']
