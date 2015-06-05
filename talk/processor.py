@@ -1,7 +1,7 @@
-#!/usr/bin/env python                                                                                                                                             
-# -*- coding:utf-8 -*-                                                                                                                                            
-import listen.listen as listener
-import comp.comprehender as comprehender
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+import listener
+import comprehender
 
 # ---- enumeration ----
 MODE_UNLOCK = -2
@@ -14,7 +14,8 @@ MODE_EVAL = 4
 
 #( main : unit -> unit )
 def main():
-    mode = MODE_LOCKED
+    # mode = MODE_LOCKED
+    mode = MODE_HOME
     norecogn = 0
 
     while mode != MODE_QUIT:
@@ -24,7 +25,8 @@ def main():
             # * if 人感センサからの情報が陽性
             # *    mode = MODE_UNLOCK
             # * #end if
-        else
+            pass
+        else:
             if mode == MODE_UNLOCK:
                 print "  [unlock mode]"
             elif mode == MODE_HOME:
@@ -42,9 +44,9 @@ def main():
             print "* waiting input..."
             lsnr = listener.Listener(600)
             result = lsnr.listen()
-    
+
             if result == None:
-    
+
                 norecogn += 1
                 if norecogn < 3:
                     print ("!---No word recognized.")
@@ -57,19 +59,20 @@ def main():
                         mode = MODE_HOME
                     #end if
                 #end if
-    
+
             else:
                 norecogn = 0
                 cmprhdr = comprehender.Comprehender()
                 words_dict = cmprhdr.comprehend(result)
                 print (", ".join(words_dict['all']).encode("utf-8"))
-    
+
                 if mode == MODE_UNLOCK:
                     #(should be written)
                     # * 認識された文字列をデータベースに送信
                     # * if ロックが外れた
                     #       mode = MODE_HOME
                     # * #end if
+                    pass
 
                 elif mode == MODE_HOME:
 
@@ -86,28 +89,28 @@ def main():
                         print "!---No command recognized."
                         mode = MODE_HOME
                     #end if
-    
+
                 elif mode == MODE_SEARCH:
-    
+
                     #(should be written)
                     #( 検索機能を追加する )
-    
+
                     mode = MODE_HOME
-    
+
                 elif mode == MODE_PLAY:
-    
+
                     #(should be written)
                     #( 再生機能を追加する )
-    
+
                     mode = MODE_HOME
-    
+
                 elif mode == MODE_EVAL:
-    
+
                     #(should be written)
                     #( 評価を処理する )
-    
+
                     mode = MODE_HOME
-    
+
                 else:
                     print "!---[BUG 02] This cannot happen."
                     mode = MODE_HOME

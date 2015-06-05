@@ -60,8 +60,8 @@ class Database:
         # self.execute_and_commit(u'insert into reviews values(null, {0}, {1}, "{2}", now())'.format(30, star, text))
 
     # post new review
-    #def fetch_lock_state(self):
-    #    return self.fetch(u'select * from reservations order by `time` limit 1')[0]
+    def fetch_lock_state(self):
+        return self.fetch(u'select * from reservations order by `time` limit 1')[0]
 
 
 def main():
