@@ -65,7 +65,7 @@ def mode_home():
   else:
     norecogn = 0
     words_dict = comprehender.comprehend(result)
-    print (", ".join(words_dict['all']).encode("utf-8"))
+    print (" ".join(words_dict['all']).encode("utf-8"))
 
     #( 超絶単純な判定によるコマンド認識 )
     if u"終了" in words_dict['all']:
