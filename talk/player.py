@@ -6,5 +6,6 @@ class Player:
 		return
 	
 	def play(self, id):
-		cmd = "vlc.exe --run-time=5 http://youtube.com/embed/" + id + " vlc://quit"
+		cmd = "/usr/bin/vlc --run-time=5 http://youtube.com/embed/" + id + " vlc://quit"
+		print cmd
 		subprocess.call(cmd.strip().split(" "))
