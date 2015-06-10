@@ -2,7 +2,7 @@ pin_red = 21
 pin_yellow = 20
 pin_green = 16
 
-import RPI.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 def LEDon(color):
     if color not in ["red","yellow","green","r","y","g"]:
