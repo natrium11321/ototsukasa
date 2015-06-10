@@ -2,8 +2,9 @@
 # -*- coding:utf-8 -*-
 from listener import Listener
 from comprehender import Comprehender
-#from database import Database
-#from drowner import Drowner
+from database import Database
+from drowner import Drowner
+from unlocker import Unlocker
 
 #---- enumeration ----
 MODE_UNLOCK = -2
@@ -16,27 +17,24 @@ MODE_REVIEW = 4
 
 MAX_RETRY = 3
 
-#---- global variable ----
+#---- initialize ----
 listener = Listener(600)
 comprehender = Comprehender()
+db = Database('157.82.7.193')
+unlocker = Unlocker(db)
+drowner = Drowner(db)
 
 #( get_input : unit -> (string | None) )
 def get_input():
-  print "* waiting input... : 入力を待っています…"
+  print "* waiting input..."
 #  return listener.listen()
-<<<<<<< HEAD
   return raw_input().decode('utf-8')
-=======
-  result = raw_input().decode('utf-8')
-  if result == "":
-    return None
-  else:
-    return result
->>>>>>> processor
 
-#( message_for_no_recognition : int ref -> unit )
-def message_for_no_recognition(refnorecogn):
 
+#( deal_with_no_recognition : int ref -> unit )
+def deal_with_no_recognition(refnorecogn):
+
+  refnorecogn += 1
   if refnorecogn < MAX_RETRY:
     print ("!---No word recognized.")
     return
@@ -44,38 +42,45 @@ def message_for_no_recognition(refnorecogn):
     print ("!---No word recognized for three consecutive times.")
     return
 
+
 #( mode_locked : unit -> mode )
 def mode_locked():
   print "  [locked mode]"
   #(should be written)
   # * if 人感センサからの情報が陽性
-  # *   return MODE_UNLOCK
-  # * else
-  return MODE_LOCKED
+  # *   mode = MODE_UNLOCK
+  # * #end if
+
+  return
 
 #( mode_unlock : unit -> mode )
 def mode_unlock():
 
-  norecogn = 0
-  while norecogn < MAX_RETRY:
-
-    print "  [unlock mode]"
-    result = get_input()
-
-    if result == None:
-      norecogn += 1
-      message_for_no_recognition(norecogn)
-    else:
-      # * 認識された文字列をデータベースに送信
-      # * if ロックが外れた:
-      #     mode = MODE_HOME
-      # * else:
-      #     mode = MODE_LOCKED
-      # * #end if
-      return MODE_HOME
-
-  #end while
-  return MODE_HOME
+  if unlocker.is_locked():
+    return MODE_HOME
+  else:
+    norecogn = 0
+    while norecogn < MAX_RETRY:
+  
+      print "  [unlock mode]"
+      result = get_input()
+  
+      if result == None:
+        norecogn += 1
+        deal_with_no_recognition(norecogn)
+      else:
+        if unlocker.try_to_unlock(result):
+          print "unlock successfully"
+          return MODE_HOME
+        else:
+          norecogn += 1
+          if norecogn < MAX_RETRY:
+            print "unlock failed, please try again."
+          else:
+            print "unlock failed for consecutive three times."
+ 
+    #end while
+    return MODE_LOCKED
 
 #( mode_search : recogn ref -> mode )
 def mode_search():
@@ -87,15 +92,14 @@ def mode_search():
     result = get_input()
 
     if result == None:
-      norecogn += 1
-      message_for_no_recognition(norecogn)
+      deal_with_no_recognition(norecogn)
     else:
       #(should be written)
       #( 検索：Drawnerを呼ぶ )
       return MODE_HOME
 
   #end while
-  return MODE_HOME
+
 
 #( mode_play : unit -> mode )
 def mode_play():
@@ -114,29 +118,28 @@ def mode_review():
     result = get_input()
 
     if result == None:
-      norecogn += 1
-      message_for_no_recognition(norecogn)
+      deal_with_no_recognition(norecogn)
     else:
       #(should be written)
       #( 評価処理：ReviewSenderを呼ぶ )
       return MODE_HOME
 
-  #while
-  return MODE_HOME
 
 #( mode_home : unit -> mode )
 def mode_home():
 
-  print "  [command mode]"
-  result = get_input()
+  norecogn = 0
+  while True:
+    print "  [command mode]"
+    result = get_input()
+
   if result == None:
     print ("!---No word recognized.")
-    return MODE_HOME
   else:
     words_dict = comprehender.comprehend(result)
     print (" ".join(words_dict['all']).encode("utf-8"))
 
-      #( 超絶単純な判定によるコマンド認識 )
+    #( 超絶単純な判定によるコマンド認識 )
     if u"終了" in words_dict['all']:
       return MODE_QUIT
     elif u"検索" in words_dict['all']:
@@ -158,22 +161,20 @@ def main():
   while mode != MODE_QUIT:
 
     if mode == MODE_LOCKED:
-      nextmode = mode_locked()
+      mode = mode_locked()
     elif mode == MODE_UNLOCK:
-      nextmode = mode_unlock()
+      mode = mode_unlock()
     elif mode == MODE_HOME:
-      nextmode = mode_home()
+      mode = mode_home()
     elif mode == MODE_SEARCH:
-      nextmode = mode_search()
+      mode = mode_search()
     elif mode == MODE_PLAY:
-      nextmode = mode_play()
+      mode = mode_play()
     elif mode == MODE_REVIEW:
-      nextmode = mode_review()
+      mode = mode_review()
     else:
-      print "!---[BUG] This cannot happen: " + str(mode)
-      nextmode = MODE_HOME
-
-    mode = nextmode
+      print "!---[BUG] This cannot happen."
+      mode = MODE_HOME
 
   #end while
 
