@@ -23,7 +23,7 @@ function makeMarker(info) {
   if (info["empty"] > 0){
     //空き有り　アイコン白
     var icon = "https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=WC|FFFFFF";
-    var content = '<h2>空き:'+info["empty"]+' 予約中:'+ info["reserved"] + ' 使用中:' + info["occupied"] + '</h2><p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="pos_id" value=' + info["pos_id"] + '><input type="submit" value="予約"></form></p>'
+    var content = '<h2>空き:'+info["empty"]+' 予約中:'+ info["reserved"] + ' 使用中:' + info["occupied"] + '</h2><p>最新のレビュー:' + info["review_comment"] + '</p><p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="pos_id" value=' + info["pos_id"] + '><input type="submit" value="予約"></form></p>'
 
   }else{
     //空き無し　アイコン赤
