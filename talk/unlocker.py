@@ -1,4 +1,5 @@
 from database import Database
+from datetime import datetime, timedelta
 
 class Unlocker:
 	
@@ -8,12 +9,16 @@ class Unlocker:
 	
 	def is_locked(self):
 		row = self.db.fetch_reservation()
-		time = row["updatetime"]
-		password = row["password"]
-		print type(time)
-		print type(password)
-		return
+		updatetime = row["updatetime"]
+		nowtime = datetime.utcnow()
+		if nowtime - updatetime < timedelta(minutes = 10):
+			self.password = row["password"]
+			return True
+		else:
+			return False
 	
 	def unlock(self, password):
-		
-		return
+		if password == self.password:
+			return True
+		else:
+			return False

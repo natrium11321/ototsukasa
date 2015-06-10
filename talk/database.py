@@ -50,7 +50,7 @@ class Database:
 
     # register new music information
     def register_music(self, word, url):
-        self.execute_and_commit(u'insert into musics values(null, {0}, "{1}", "{2}", now())'.format(30, word, url))
+        self.execute_and_commit(u'insert into musics values(null, {0}, "{1}", "{2}", now())'.format(self.MY_TOILET_ID, word, url))
 
     # fetch music information
     def fetch_music_randomly(self):
@@ -64,12 +64,16 @@ class Database:
     def fetch_reservation(self):
         return self.fetch(u'select * from reservations where toilet_id = {0} order by `updatetime` limit 1'.format(self.MY_TOILET_ID))[0]
 
+    # fetch the newest reservation
+    def update_status(self, is_occupied):
+        empty = "Occupied" if is_occupied else "Empty"
+        self.execute_and_commit(u'insert into status values(null, {0}, "{1}", now())'.format(self.MY_TOILET_ID, empty))
+
+
 
 def main():
     db = Database('157.82.7.193')
-    lock = db.fetch_reservation()
-
-    print lock
+    db.update_status(True)
 
 
 if __name__ == '__main__':

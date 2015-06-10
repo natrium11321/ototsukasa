@@ -24,11 +24,15 @@ comprehender = Comprehender()
 def get_input():
   print "* waiting input... : 入力を待っています…"
 #  return listener.listen()
+<<<<<<< HEAD
   result = raw_input()
   if result == "":
     return None
   else:
     return result
+=======
+  return raw_input().decode('utf-8')
+>>>>>>> a721b6e4eae6e869a37cee5f66bd6c3abd20fd7d
 
 #( deal_with_no_recognition : int ref -> unit )
 def deal_with_no_recognition(refnorecogn):
