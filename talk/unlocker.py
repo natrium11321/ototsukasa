@@ -17,8 +17,9 @@ class Unlocker:
 		else:
 			return False
 	
-	def unlock(self, password):
+	def try_to_unlock(self, password):
 		if password == self.password:
+			self.db.update_status(True)
 			return True
 		else:
 			return False
