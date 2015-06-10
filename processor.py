@@ -127,9 +127,8 @@ def mode_review():
 def mode_home():
 
   norecogn = 0
-  while True:
-    print "  [command mode]"
-    result = get_input()
+  print "  [command mode]"
+  result = get_input()
 
   if result == None:
     print ("!---No word recognized.")
