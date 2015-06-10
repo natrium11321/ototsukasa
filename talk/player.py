@@ -6,5 +6,5 @@ class Player:
 		return
 	
 	def play(self, id):
-		url = subprocess.check_output(["youtube-dl", "-g", '"'+id+'"'])
+		url = subprocess.check_output(["youtube-dl", "-g", "https://www.youtube.com/watch?v=" + id])
 		subprocess.call(["omxplayer", "-o", "local", url])
