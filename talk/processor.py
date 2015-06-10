@@ -47,11 +47,10 @@ def deal_with_no_recognition(refnorecogn):
 #( mode_locked : unit -> mode )
 def mode_locked():
   print "  [locked mode]"
-  #(should be written)
-  mode = MODE_LOCKED
   if getHuman():
-     mode = MODE_UNLOCK
-  return mode
+    return MODE_UNLOCK
+  else:
+    return MODE_UNLOCK
 
 #( mode_unlock : unit -> mode )
 def mode_unlock():
@@ -94,8 +93,7 @@ def mode_search():
     if result == None:
       deal_with_no_recognition(norecogn)
     else:
-      #(should be written)
-      #( 検索：Drawnerを呼ぶ )
+      drowner.drown(result)
       return MODE_HOME
 
   #end while
@@ -105,8 +103,7 @@ def mode_search():
 def mode_play():
 
   print "  [play mode]"
-  #(should be written)
-  #( 再生：Drawnerを呼ぶ )
+  drowner.drown()
   return MODE_SEARCH
 
 
