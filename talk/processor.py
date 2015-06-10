@@ -146,7 +146,7 @@ def mode_home():
 def main():
   #---- 初期化 ----
   # mode = MODE_LOCKED
-  nextmode = MODE_HOME
+  mode = MODE_HOME
 
   while mode != MODE_QUIT:
     mode = nextmode
@@ -165,7 +165,9 @@ def main():
       nextmode = mode_review()
     else:
       print "!---[BUG] This cannot happen."
-      mode = MODE_HOME
+      nextmode = MODE_HOME
+
+    mode = nextmode
 
   #end while
 
