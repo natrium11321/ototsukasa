@@ -50,7 +50,7 @@ def mode_locked():
   if getHuman():
     return MODE_UNLOCK
   else:
-    return MODE_UNLOCK
+    return MODE_LOCKED
 
 #( mode_unlock : unit -> mode )
 def mode_unlock():
@@ -153,8 +153,8 @@ def mode_home():
 
 def main():
   #---- 初期化 ----
-  # mode = MODE_LOCKED
-  mode = MODE_HOME
+  mode = MODE_LOCKED
+  #mode = MODE_HOME
 
   while mode != MODE_QUIT:
 
