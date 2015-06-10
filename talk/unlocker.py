@@ -14,6 +14,6 @@ class Unlocker:
 		print type(password)
 		return
 	
-	def unlock(self):
+	def unlock(self, password):
 		
 		return
