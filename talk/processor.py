@@ -5,7 +5,7 @@ from comprehender import Comprehender
 from database import Database
 from drowner import Drowner
 from unlocker import Unlocker
-from hardware.getHuman import getHuman
+from ..hardware.getHuman import getHuman
 
 #---- enumeration ----
 MODE_UNLOCK = -2
