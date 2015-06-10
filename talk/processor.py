@@ -24,7 +24,7 @@ comprehender = Comprehender()
 def get_input():
   print "* waiting input... : 入力を待っています…"
 #  return listener.listen()
-  result = raw_input()
+  result = raw_input().decode('utf-8')
   if result == "":
     return None
   else:
@@ -118,18 +118,16 @@ def mode_review():
 #( mode_home : unit -> mode )
 def mode_home():
 
-  norecogn = 0
-  while True:
-    print "  [command mode]"
-    result = get_input()
-
+  print "  [command mode]"
+  result = get_input()
   if result == None:
     print ("!---No word recognized.")
+    return MODE_HOME
   else:
     words_dict = comprehender.comprehend(result)
     print (" ".join(words_dict['all']).encode("utf-8"))
 
-    #( 超絶単純な判定によるコマンド認識 )
+      #( 超絶単純な判定によるコマンド認識 )
     if u"終了" in words_dict['all']:
       return MODE_QUIT
     elif u"検索" in words_dict['all']:
