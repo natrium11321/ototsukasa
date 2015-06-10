@@ -149,7 +149,6 @@ def main():
   mode = MODE_HOME
 
   while mode != MODE_QUIT:
-    mode = nextmode
 
     if mode == MODE_LOCKED:
       nextmode = mode_locked()
