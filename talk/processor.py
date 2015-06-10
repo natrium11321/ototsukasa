@@ -46,10 +46,9 @@ def mode_locked():
   print "  [locked mode]"
   #(should be written)
   # * if 人感センサからの情報が陽性
-  # *   mode = MODE_UNLOCK
-  # * #end if
-
-  return
+  # *   return MODE_UNLOCK
+  # * else
+        return MODE_LOCKED
 
 #( mode_unlock : unit -> mode )
 def mode_unlock():
