@@ -5,7 +5,7 @@ import time
 class Player:
 	
 	def __init__(self):
-		self.thread = threading.Thread(target = target)
+		self.thread = threading.Thread(target = self.target)
 	
 	def play(self, id):
 		self.thread.start()
