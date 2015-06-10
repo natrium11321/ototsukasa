@@ -10,7 +10,7 @@ class Player:
 	def play(self, id):
 		url = subprocess.check_output(["youtube-dl", "-g", "https://www.youtube.com/watch?v=" + id]).rstrip()
 		self.thread.start()
-		self.process = subprocess.Popen(["omxplayer", "-o", "local", url], stdin = PIPE)
+		self.process = subprocess.Popen(["omxplayer", "-o", "local", url], stdin = subprocess.PIPE)
 	
 	def target(self):
 		time.sleep(5)
