@@ -90,7 +90,7 @@ def mode_search():
     print "  [search mode]"
     result = get_input()
 
-    print reslut #検索キーワードを出力
+    print result #検索キーワードを出力
     if result == None:
       deal_with_no_recognition(norecogn)
     else:
@@ -133,6 +133,7 @@ def mode_home():
 
   if result == None:
     print ("!---No word recognized.")
+    return MODE_HOME
   else:
     words_dict = comprehender.comprehend(result)
     print (" ".join(words_dict['all']).encode("utf-8"))
