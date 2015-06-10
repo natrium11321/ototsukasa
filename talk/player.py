@@ -13,5 +13,5 @@ class Player:
 		self.process = subprocess.Popen(["omxplayer", "-o", "local", url], stdin = subprocess.PIPE)
 	
 	def target(self):
-		time.sleep(5)
+		time.sleep(20)
 		self.process.communicate("q")
