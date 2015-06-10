@@ -28,8 +28,8 @@ drowner = Drowner(db)
 #( get_input : unit -> (string | None) )
 def get_input():
   print "* waiting input..."
-#  return listener.listen()
-  return raw_input().decode('utf-8')
+  return listener.listen()
+#  return raw_input().decode('utf-8')
 
 
 #( deal_with_no_recognition : int ref -> unit )
