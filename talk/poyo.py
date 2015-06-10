@@ -1,4 +1,4 @@
 from speaker import Speaker
 
 speaker = Speaker()
-speaker.speak("test")
+speaker.speak(raw_input().rstrip())
