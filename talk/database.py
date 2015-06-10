@@ -12,6 +12,7 @@ class Database:
     def __init__(self, host):
         self.connect(host)
         self.MY_TOILET_ID = 3
+        self.MY_POS_ID = 1
 
     # destructor
     def __del__(self):
@@ -69,6 +70,8 @@ class Database:
         empty = "Occupied" if is_occupied else "Empty"
         self.execute_and_commit(u'insert into status values(null, {0}, "{1}", now())'.format(self.MY_TOILET_ID, empty))
 
+    def register_reveiw(self,comment):
+        self.execute_and_commit(u"INSERT INTO reviews(pos_id,comment) VALUES({0},{1})".format(self.MY_POS_ID,comment))
 
 
 def main():
