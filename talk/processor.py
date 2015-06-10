@@ -163,7 +163,7 @@ def main():
     elif mode == MODE_REVIEW:
       nextmode = mode_review()
     else:
-      print "!---[BUG] This cannot happen."
+      print "!---[BUG] This cannot happen: " + str(mode)
       nextmode = MODE_HOME
 
     mode = nextmode
