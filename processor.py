@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-from listener import Listener
-from comprehender import Comprehender
-from database import Database
-from drowner import Drowner
-from unlocker import Unlocker
-from ..hardware.getHuman import getHuman
+from talk.listener import Listener
+from talk.comprehender import Comprehender
+from talk.database import Database
+from talk.drowner import Drowner
+from talk.unlocker import Unlocker
+from hardware.getHuman import getHuman
 
 #---- enumeration ----
 MODE_UNLOCK = -2
