@@ -12,11 +12,11 @@ class Drowner:
 	
 	def drown(self, keyword = None):
 		if keyword:
-			id = self.db.fetch_music_randomly()
-			self.player.play(id)
-		else:
 			id = self.searcher.search(keyword)
 			if id:
 				self.db.register_music(keyword, id)
 				self.player.play(id)
+		else:
+			id = self.db.fetch_music_randomly()
+			self.player.play(id)
 		return
