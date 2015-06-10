@@ -1,5 +1,8 @@
+import subprocess
+
 class Speaker:
 	
 	def __init__(self):
 	
-	def speaker(self):
+	def speak(self, name):
+		subprocess.call(["aplay", name])
