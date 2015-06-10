@@ -71,6 +71,7 @@ def mode_unlock():
       return MODE_HOME
 
   #end while
+  return MODE_HOME
 
 #( mode_search : recogn ref -> mode )
 def mode_search():
@@ -90,7 +91,7 @@ def mode_search():
       return MODE_HOME
 
   #end while
-
+  return MODE_HOME
 
 #( mode_play : unit -> mode )
 def mode_play():
@@ -116,6 +117,8 @@ def mode_review():
       #( 評価処理：ReviewSenderを呼ぶ )
       return MODE_HOME
 
+  #while
+  return MODE_HOME
 
 #( mode_home : unit -> mode )
 def mode_home():
