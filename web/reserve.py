@@ -3,6 +3,7 @@
 
 import cgi
 import os
+import random
 import sys
 import cgitb
 import MySQLdb
@@ -45,6 +46,10 @@ ids = cursor.fetchall()
 #res = cursor.fetchall()
 #status = res[0][0]
 
+#make password
+random.seed()
+password = str(random.randint(1000,9999))
+
 #not empty
 if (len(ids) == 0):
     print 'Content-type: text/html; charset=UTF-8'
@@ -52,14 +57,15 @@ if (len(ids) == 0):
     print "Location: /fail.html"
     print  #end of header
 else:
-    print 'Content-type: text/html; charset=UTF-8'
-    print "Status: 303 See other"
-    print "Location: /success.html"
-    print  #end of header
-    tid = ids[0][0]
-    qreserve = "INSERT INTO reservations (toilet_id) VALUES (" + str(tid) +');'
+    tid = str(ids[0][0])
+    qreserve = "INSERT INTO reservations (toilet_id,password) VALUES (" + tid + ',' + password +');'
     cursor.execute(qreserve)
     connector.commit()
+    print 'Content-type: text/html; charset=UTF-8'
+    print "Status: 303 See other"
+    print "Location: /success.html?id=" + tid + "&password=" + password
+    print  #end of header
+
 
 cursor.close()
 connector.close()

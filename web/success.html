@@ -4,8 +4,42 @@
     <title>Ototsukasa</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .myheader {
+        height: 10%;
+        margin: 0;
+        background-color: #4e454a;
+        margin-bottom: 40px;
+        color: #fff
+      }
+      .main {
+        height: 85%;
+      }
+    </style>
   </head>
   <body>
-    <h1>Reserved successfully.</h1>
+    <div class="myheader">
+      <div class="container">
+        <h1>トイレ検索システム</h1>
+      </div>
+    </div>
+    <div class="main">
+      <div class="container" id="textarea">
+        <h1>予約が完了しました。</h1>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var prm = window.location.search;
+      var id = prm.slice(prm.indexOf("id=")+3,prm.indexOf("&password"));
+      var passcode = prm.slice(prm.indexOf("&password=")+10);
+      var ele = document.createElement("p");
+	    var str = document.createTextNode(id+" 番のトイレが予約されました。暗証番号は " + passcode + " です。");
+	    ele.appendChild(str);
+      var textarea = document.getElementById('textarea')
+      textarea.appendChild(ele);
+    </script>
   </body>
 </html>
