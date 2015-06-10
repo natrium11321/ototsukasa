@@ -14,4 +14,4 @@ class Player:
 	
 	def target(self):
 		time.sleep(5)
-		self.process.kill()
+		self.process.communicate("q")
