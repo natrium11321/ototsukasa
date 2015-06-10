@@ -55,7 +55,7 @@ def mode_locked():
 #( mode_unlock : unit -> mode )
 def mode_unlock():
 
-  if unlocker.is_locked():
+  if not unlocker.is_locked():
     return MODE_HOME
   else:
     norecogn = 0
