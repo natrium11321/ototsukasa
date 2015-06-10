@@ -8,8 +8,8 @@ class Player:
 		self.thread = threading.Thread(target = self.target)
 	
 	def play(self, id):
-		self.thread.start()
 		url = subprocess.check_output(["youtube-dl", "-g", "https://www.youtube.com/watch?v=" + id]).rstrip()
+		self.thread.start()
 		self.process = subprocess.Popen(["omxplayer", "-o", "local", url])
 	
 	def target(self):
