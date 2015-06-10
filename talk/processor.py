@@ -33,7 +33,6 @@ def get_input():
 #( deal_with_no_recognition : int ref -> unit )
 def deal_with_no_recognition(refnorecogn):
 
-  refnorecogn += 1
   if refnorecogn < MAX_RETRY:
     print ("!---No word recognized.")
     return
@@ -60,7 +59,7 @@ def mode_unlock():
     result = get_input()
 
     if result == None:
-      deal_with_no_recognition(MODE_UNLOCK, refnorecogn)
+      deal_with_no_recognition(norecogn)
     else:
       # * 認識された文字列をデータベースに送信
       # * if ロックが外れた:
@@ -82,6 +81,7 @@ def mode_search():
     result = get_input()
 
     if result == None:
+      norecogn += 1
       deal_with_no_recognition(norecogn)
     else:
       #(should be written)
@@ -108,6 +108,7 @@ def mode_review():
     result = get_input()
 
     if result == None:
+      norecogn += 1
       deal_with_no_recognition(norecogn)
     else:
       #(should be written)
