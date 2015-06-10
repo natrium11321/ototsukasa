@@ -97,6 +97,7 @@ def mode_search():
       return MODE_HOME
 
   #end while
+  return MODE_HOME
 
 
 #( mode_play : unit -> mode )
