@@ -22,7 +22,7 @@ comprehender = Comprehender()
 
 #( get_input : unit -> (string | None) )
 def get_input():
-  print "* waiting input..."
+  print "* waiting input... : 入力を待っています…"
 #  return listener.listen()
   return raw_input()
 
