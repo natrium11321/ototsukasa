@@ -11,4 +11,5 @@ class Player:
 		url = url.replace("?", "\\?")
 		url = url.replace("&", "\\&")
 		url = url.replace("=", "\\=")
+		print url
 		subprocess.call(["omxplayer", "-o", "local", url])
