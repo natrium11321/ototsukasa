@@ -90,6 +90,7 @@ def mode_search():
     print "  [search mode]"
     result = get_input()
 
+    print reslut #検索キーワードを出力
     if result == None:
       deal_with_no_recognition(norecogn)
     else:
@@ -105,7 +106,7 @@ def mode_play():
 
   print "  [play mode]"
   drowner.drown()
-  return MODE_SEARCH
+  return MODE_HOME
 
 
 def mode_review():
