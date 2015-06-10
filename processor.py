@@ -55,6 +55,8 @@ def mode_locked():
 #( mode_unlock : unit -> mode )
 def mode_unlock():
 
+  print "unlocker.is_locked"
+  print unlocker.is_locked()
   if unlocker.is_locked():
     return MODE_HOME
   else:
