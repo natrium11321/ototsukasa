@@ -10,8 +10,8 @@ class Unlocker:
 		row = self.db.fetch_reservation()
 		time = row["updatetime"]
 		password = row["password"]
-		print time
-		print password
+		print type(time)
+		print type(password)
 		return
 	
 	def unlock(self):
