@@ -1,0 +1,4 @@
+All: 紙, を, 出し, て
+Nouns: 紙
+Verbs: 出し
+Adjs: 
