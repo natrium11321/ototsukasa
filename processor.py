@@ -6,6 +6,7 @@ from talk.database import Database
 from talk.drowner import Drowner
 from talk.unlocker import Unlocker
 from hardware.getHuman import getHuman
+from hardware import LED
 
 #---- enumeration ----
 MODE_UNLOCK = -2
@@ -27,8 +28,11 @@ drowner = Drowner(db)
 
 #( get_input : unit -> (string | None) )
 def get_input():
+  LED.LEDon('y')
   print "* waiting input..."
-  return listener.listen()
+  res = listener.listen()
+  LED.LEDoff('y')
+  return res
 #  return raw_input().decode('utf-8')
 
 
