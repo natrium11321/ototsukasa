@@ -71,7 +71,7 @@ class Database:
         self.execute_and_commit(u'insert into status values(null, {0}, "{1}", now())'.format(self.MY_TOILET_ID, empty))
 
     def register_review(self,comment):
-        self.execute_and_commit(u"INSERT INTO reviews(pos_id,comment) VALUES({0},{1})".format(self.MY_POS_ID,comment))
+        self.execute_and_commit(u'INSERT INTO reviews(pos_id,comment) VALUES({0},"{1}")'.format(self.MY_POS_ID,comment))
 
 
 def main():
