@@ -24,7 +24,7 @@ comprehender = Comprehender()
 def get_input():
   print "* waiting input... : 入力を待っています…"
 #  return listener.listen()
-  return raw_input()
+  return raw_input().decode('utf-8')
 
 def deal_with_no_recognition():
   norecogn += 1
