@@ -14,9 +14,9 @@ MODE_SEARCH = 2
 MODE_PLAY = 3
 MODE_REVIEW = 4
 
+MAX_RETRY = 3
+
 #---- global variable ----
-norecogn = 0
-mode = MODE_LOCKED
 listener = Listener(600)
 comprehender = Comprehender()
 
@@ -24,127 +24,156 @@ comprehender = Comprehender()
 def get_input():
   print "* waiting input... : 入力を待っています…"
 #  return listener.listen()
+<<<<<<< HEAD
   return raw_input().decode('utf-8')
+=======
+  result = raw_input().decode('utf-8')
+  if result == "":
+    return None
+  else:
+    return result
+>>>>>>> processor
 
-def deal_with_no_recognition():
-  norecogn += 1
-  if norecogn < 3:
+#( message_for_no_recognition : int ref -> unit )
+def message_for_no_recognition(refnorecogn):
+
+  if refnorecogn < MAX_RETRY:
     print ("!---No word recognized.")
+    return
   else:
     print ("!---No word recognized for three consecutive times.")
-    norecogn = 0
-    mode = MODE_HOME
+    return
 
-  return
-
+#( mode_locked : unit -> mode )
 def mode_locked():
   print "  [locked mode]"
   #(should be written)
   # * if 人感センサからの情報が陽性
-  # *   mode = MODE_UNLOCK
-  # * #end if
+  # *   return MODE_UNLOCK
+  # * else
+  return MODE_LOCKED
 
-  return
-
+#( mode_unlock : unit -> mode )
 def mode_unlock():
-  print "  [unlock mode]"
-  result = get_input()
 
-  if result == None:
-    deal_with_no_recognition()
-  else:
-    # * 認識された文字列をデータベースに送信
-    # * if ロックが外れた:
-    #     mode = MODE_HOME
-    # * else:
-    #     mode = MODE_LOCKED
-    # * #end if
-    pass
+  norecogn = 0
+  while norecogn < MAX_RETRY:
 
-  return
+    print "  [unlock mode]"
+    result = get_input()
 
-def mode_home():
-  print "  [command mode]"
-  result = get_input()
-
-  if result == None:
-    print ("!---No word recognized.")
-  else:
-    norecogn = 0
-    words_dict = comprehender.comprehend(result)
-    print (" ".join(words_dict['all']).encode("utf-8"))
-
-    #( 超絶単純な判定によるコマンド認識 )
-    if u"終了" in words_dict['all']:
-      mode = MODE_QUIT
-    elif u"検索" in words_dict['all']:
-      mode = MODE_SEARCH
-    elif u"再生" in words_dict['all']:
-      mode = MODE_PLAY
-    elif u"評価" in words_dict['all']:
-      mode = MODE_REVIEW
+    if result == None:
+      norecogn += 1
+      message_for_no_recognition(norecogn)
     else:
-      print "!---No command recognized."
-      mode = MODE_HOME
+      # * 認識された文字列をデータベースに送信
+      # * if ロックが外れた:
+      #     mode = MODE_HOME
+      # * else:
+      #     mode = MODE_LOCKED
+      # * #end if
+      return MODE_HOME
 
-  return
+  #end while
+  return MODE_HOME
 
+#( mode_search : recogn ref -> mode )
 def mode_search():
-  print "  [search mode]"
-  result = get_input()
 
-  if result == None:
-    deal_with_no_recognition()
-  else:
-    #(should be written)
-    #( 検索：Drawnerを呼ぶ )
-    pass
+  norecogn = 0
+  while norecogn < MAX_RETRY:
 
-  return
+    print "  [search mode]"
+    result = get_input()
 
+    if result == None:
+      norecogn += 1
+      message_for_no_recognition(norecogn)
+    else:
+      #(should be written)
+      #( 検索：Drawnerを呼ぶ )
+      return MODE_HOME
+
+  #end while
+  return MODE_HOME
+
+#( mode_play : unit -> mode )
 def mode_play():
+
   print "  [play mode]"
   #(should be written)
   #( 再生：Drawnerを呼ぶ )
+  return MODE_SEARCH
 
-  return
 
 def mode_review():
-  print "  [review mode]"
+
+  norecogn = 0
+  while norecogn < MAX_RETRY:
+    print "  [review mode]"
+    result = get_input()
+
+    if result == None:
+      norecogn += 1
+      message_for_no_recognition(norecogn)
+    else:
+      #(should be written)
+      #( 評価処理：ReviewSenderを呼ぶ )
+      return MODE_HOME
+
+  #while
+  return MODE_HOME
+
+#( mode_home : unit -> mode )
+def mode_home():
+
+  print "  [command mode]"
   result = get_input()
-
   if result == None:
-    deal_with_no_recognition()
+    print ("!---No word recognized.")
+    return MODE_HOME
   else:
-    #(should be written)
-    #( 評価処理：ReviewSenderを呼ぶ )
-    pass
+    words_dict = comprehender.comprehend(result)
+    print (" ".join(words_dict['all']).encode("utf-8"))
 
-  return
+      #( 超絶単純な判定によるコマンド認識 )
+    if u"終了" in words_dict['all']:
+      return MODE_QUIT
+    elif u"検索" in words_dict['all']:
+      return MODE_SEARCH
+    elif u"再生" in words_dict['all']:
+      return MODE_PLAY
+    elif u"評価" in words_dict['all']:
+      return MODE_REVIEW
+    else:
+      print "!---No command recognized."
+      return MODE_HOME
+
 
 def main():
   #---- 初期化 ----
   # mode = MODE_LOCKED
   mode = MODE_HOME
-  norecogn = 0
 
   while mode != MODE_QUIT:
 
     if mode == MODE_LOCKED:
-      mode_locked()
+      nextmode = mode_locked()
     elif mode == MODE_UNLOCK:
-      mode_unlock()
+      nextmode = mode_unlock()
     elif mode == MODE_HOME:
-      mode_home()
+      nextmode = mode_home()
     elif mode == MODE_SEARCH:
-      mode_search()
+      nextmode = mode_search()
     elif mode == MODE_PLAY:
-      mode_play()
+      nextmode = mode_play()
     elif mode == MODE_REVIEW:
-      mode_review()
+      nextmode = mode_review()
     else:
-      print "!---[BUG] This cannot happen."
-      mode = MODE_HOME
+      print "!---[BUG] This cannot happen: " + str(mode)
+      nextmode = MODE_HOME
+
+    mode = nextmode
 
   #end while
 
