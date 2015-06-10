@@ -2,8 +2,9 @@
 # -*- coding:utf-8 -*-
 from listener import Listener
 from comprehender import Comprehender
-#from database import Database
-#from drowner import Drowner
+from database import Database
+from drowner import Drowner
+from unlocker import Unlocker
 
 #---- enumeration ----
 MODE_UNLOCK = -2
@@ -16,23 +17,19 @@ MODE_REVIEW = 4
 
 MAX_RETRY = 3
 
-#---- global variable ----
+#---- initialize ----
 listener = Listener(600)
 comprehender = Comprehender()
+db = Database('157.82.7.193')
+unlocker = Unlocker(db)
+drowner = Drowner(db)
 
 #( get_input : unit -> (string | None) )
 def get_input():
-  print "* waiting input... : 入力を待っています…"
+  print "* waiting input..."
 #  return listener.listen()
-<<<<<<< HEAD
-  result = raw_input()
-  if result == "":
-    return None
-  else:
-    return result
-=======
   return raw_input().decode('utf-8')
->>>>>>> a721b6e4eae6e869a37cee5f66bd6c3abd20fd7d
+
 
 #( deal_with_no_recognition : int ref -> unit )
 def deal_with_no_recognition(refnorecogn):
@@ -44,6 +41,7 @@ def deal_with_no_recognition(refnorecogn):
   else:
     print ("!---No word recognized for three consecutive times.")
     return
+
 
 #( mode_locked : unit -> mode )
 def mode_locked():
@@ -58,24 +56,31 @@ def mode_locked():
 #( mode_unlock : unit -> mode )
 def mode_unlock():
 
-  norecogn = 0
-  while norecogn < MAX_RETRY:
-
-    print "  [unlock mode]"
-    result = get_input()
-
-    if result == None:
-      deal_with_no_recognition(MODE_UNLOCK, refnorecogn)
-    else:
-      # * 認識された文字列をデータベースに送信
-      # * if ロックが外れた:
-      #     mode = MODE_HOME
-      # * else:
-      #     mode = MODE_LOCKED
-      # * #end if
-      return MODE_HOME
-
-  #end while
+  if unlocker.is_locked():
+    return MODE_HOME
+  else:
+    norecogn = 0
+    while norecogn < MAX_RETRY:
+  
+      print "  [unlock mode]"
+      result = get_input()
+  
+      if result == None:
+        norecogn += 1
+        deal_with_no_recognition(norecogn)
+      else:
+        if unlocker.try_to_unlock(result):
+          print "unlock successfully"
+          return MODE_HOME
+        else:
+          norecogn += 1
+          if norecogn < MAX_RETRY:
+            print "unlock failed, please try again."
+          else:
+            print "unlock failed for consecutive three times."
+ 
+    #end while
+    return MODE_LOCKED
 
 #( mode_search : recogn ref -> mode )
 def mode_search():
