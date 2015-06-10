@@ -12,7 +12,7 @@ MODE_QUIT = 0
 MODE_HOME = 1
 MODE_SEARCH = 2
 MODE_PLAY = 3
-MODE_EVAL = 4
+MODE_REVIEW = 4
 
 #---- global variable ----
 norecogn = 0
@@ -48,11 +48,18 @@ def mode_locked():
 
 def mode_unlock():
   print "  [unlock mode]"
-  #(should be written)
-  # * 認識された文字列をデータベースに送信
-  # * if ロックが外れた
-  #     mode = MODE_HOME
-  # * #end if
+  result = get_input()
+
+  if result == None:
+    deal_with_no_recognition()
+  else:
+    # * 認識された文字列をデータベースに送信
+    # * if ロックが外れた:
+    #     mode = MODE_HOME
+    # * else:
+    #     mode = MODE_LOCKED
+    # * #end if
+    pass
 
   return
 
@@ -75,7 +82,7 @@ def mode_home():
     elif u"再生" in words_dict['all']:
       mode = MODE_PLAY
     elif u"評価" in words_dict['all']:
-      mode = MODE_EVAL
+      mode = MODE_REVIEW
     else:
       print "!---No command recognized."
       mode = MODE_HOME
@@ -102,7 +109,7 @@ def mode_play():
 
   return
 
-def mode_eval():
+def mode_review():
   print "  [review mode]"
   result = get_input()
 
@@ -133,6 +140,8 @@ def main():
       mode_search()
     elif mode == MODE_PLAY:
       mode_play()
+    elif mode == MODE_REVIEW:
+      mode_review()
     else:
       print "!---[BUG] This cannot happen."
       mode = MODE_HOME
