@@ -19,6 +19,6 @@ class Unlocker:
 	
 	def unlock(self, password):
 		if password == self.password:
-		
+			return True
 		else:
 			return False
