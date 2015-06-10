@@ -13,5 +13,5 @@ class Player:
 		self.process = subprocess.Popen(["omxplayer", "-o", "local", url])
 	
 	def target(self):
-		time.sleep(25)
+		time.sleep(5)
 		self.process.kill()
