@@ -62,6 +62,8 @@ def mode_unlock():
   if not unlocker.is_locked():
     return MODE_HOME
   else:
+    #予約中
+    LED.LEDon('r')
     norecogn = 0
     while norecogn < MAX_RETRY:
 
@@ -74,6 +76,7 @@ def mode_unlock():
       else:
         if unlocker.try_to_unlock(result):
           print "unlock successfully"
+          LED.LEDoff('r')
           return MODE_HOME
         else:
           norecogn += 1
@@ -88,6 +91,7 @@ def mode_unlock():
 #( mode_search : recogn ref -> mode )
 def mode_search():
 
+  LED.LEDon('g')
   norecogn = 0
   while norecogn < MAX_RETRY:
 
@@ -108,6 +112,7 @@ def mode_search():
 #( mode_play : unit -> mode )
 def mode_play():
 
+  LED.LEDon('g')
   print "  [play mode]"
   drowner.drown()
   return MODE_HOME
@@ -131,6 +136,7 @@ def mode_review():
 #( mode_home : unit -> mode )
 def mode_home():
 
+  LED.LEDoff('g')
   norecogn = 0
   print "  [command mode]"
   result = get_input()
@@ -159,6 +165,8 @@ def mode_home():
 def main():
   #---- 初期化 ----
   mode = MODE_LOCKED
+  for c in ['r','g','y']:
+      LED.LEDoff(c)
   #mode = MODE_HOME
 
   while mode != MODE_QUIT:
