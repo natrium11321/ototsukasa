@@ -6,7 +6,7 @@ class Speaker:
 		pygame.init()
 		pygame.mixer.init()
 		self.sound = {}
-		self.sound["test"] = pygame.mixer.Sound("/usr/share/sounds/alsa/Front_Center.wav")
+		self.sound["test"] = pygame.mixer.Sound("/usr/share/sounds/alsa/aFront_Center.wav")
 	
 	def speak(self, name):
 		self.sound[name].play()
