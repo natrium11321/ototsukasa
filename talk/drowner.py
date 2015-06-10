@@ -11,6 +11,7 @@ class Drowner:
 		return
 	
 	def drown(self, keyword = None):
+		print keyword
 		if keyword:
 			id = self.searcher.search(keyword)
 			if id:
