@@ -11,11 +11,14 @@ class Unlocker:
 		row = self.db.fetch_reservation()
 		updatetime = row["updatetime"]
 		nowtime = datetime.utcnow()
-		if nowtime - updatetime > timedelta(minutes = 10):
+		if nowtime - updatetime < timedelta(minutes = 10):
+			self.password = row["password"]
+			return True
+		else:
 			return False
-		self.password = row["password"]
-		return True
 	
 	def unlock(self, password):
+		if password == self.password:
 		
-		return
+		else:
+			return False
