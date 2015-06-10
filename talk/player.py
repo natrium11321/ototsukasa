@@ -6,6 +6,5 @@ class Player:
 		return
 	
 	def play(self, id):
-		cmd = "/usr/bin/vlc --run-time=5 http://youtube.com/embed/" + id + " vlc://quit"
-		print cmd
-		subprocess.call(cmd.strip().split(" "))
+		url = subprocess.check_output(["youtube-dl", "-g", id])
+		subprocess.call(["omxplayer", "-o", "local", url)
