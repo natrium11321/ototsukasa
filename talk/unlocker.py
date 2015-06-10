@@ -7,7 +7,7 @@ class Unlocker:
 		return
 	
 	def is_locked(self):
-		row = db.fetch_reservation()
+		row = self.db.fetch_reservation()
 		time = row["updatetime"]
 		password = row["password"]
 		print time
