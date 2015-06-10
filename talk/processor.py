@@ -30,8 +30,8 @@ def get_input():
   else:
     return result
 
-#( deal_with_no_recognition : int ref -> unit )
-def deal_with_no_recognition(refnorecogn):
+#( message_for_no_recognition : int ref -> unit )
+def message_for_no_recognition(refnorecogn):
 
   if refnorecogn < MAX_RETRY:
     print ("!---No word recognized.")
@@ -59,7 +59,8 @@ def mode_unlock():
     result = get_input()
 
     if result == None:
-      deal_with_no_recognition(norecogn)
+      norecogn += 1
+      message_for_no_recognition(norecogn)
     else:
       # * 認識された文字列をデータベースに送信
       # * if ロックが外れた:
@@ -82,7 +83,7 @@ def mode_search():
 
     if result == None:
       norecogn += 1
-      deal_with_no_recognition(norecogn)
+      message_for_no_recognition(norecogn)
     else:
       #(should be written)
       #( 検索：Drawnerを呼ぶ )
@@ -109,7 +110,7 @@ def mode_review():
 
     if result == None:
       norecogn += 1
-      deal_with_no_recognition(norecogn)
+      message_for_no_recognition(norecogn)
     else:
       #(should be written)
       #( 評価処理：ReviewSenderを呼ぶ )
@@ -145,22 +146,23 @@ def mode_home():
 def main():
   #---- 初期化 ----
   # mode = MODE_LOCKED
-  mode = MODE_HOME
+  nextmode = MODE_HOME
 
   while mode != MODE_QUIT:
+    mode = nextmode
 
     if mode == MODE_LOCKED:
-      mode = mode_locked()
+      nextmode = mode_locked()
     elif mode == MODE_UNLOCK:
-      mode = mode_unlock()
+      nextmode = mode_unlock()
     elif mode == MODE_HOME:
-      mode = mode_home()
+      nextmode = mode_home()
     elif mode == MODE_SEARCH:
-      mode = mode_search()
+      nextmode = mode_search()
     elif mode == MODE_PLAY:
-      mode = mode_play()
+      nextmode = mode_play()
     elif mode == MODE_REVIEW:
-      mode = mode_review()
+      nextmode = mode_review()
     else:
       print "!---[BUG] This cannot happen."
       mode = MODE_HOME
