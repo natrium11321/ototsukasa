@@ -11,6 +11,7 @@ class Database:
     # constructor with connection to the host
     def __init__(self, host):
         self.connect(host)
+        self.MY_TOILET_ID = 3
 
     # destructor
     def __del__(self):
@@ -59,16 +60,16 @@ class Database:
     #def post_review(self, star, text):
         # self.execute_and_commit(u'insert into reviews values(null, {0}, {1}, "{2}", now())'.format(30, star, text))
 
-    # post new review
-    def fetch_lock_state(self):
-        return self.fetch(u'select * from reservations order by `time` limit 1')[0]
+    # fetch the newest reservation
+    def fetch_reservation(self):
+        return self.fetch(u'select * from reservations where toilet_id = {0} order by `updatetime` limit 1'.format(self.MY_TOILET_ID))[0]
 
 
 def main():
-    db = Database('157.82.6.126')
-    music = db.fetch_music_randomly()
+    db = Database('157.82.7.193')
+    lock = db.fetch_reservation()
 
-    print music['url']
+    print lock
 
 
 if __name__ == '__main__':
