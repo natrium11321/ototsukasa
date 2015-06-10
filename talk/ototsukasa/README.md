@@ -1,2 +1,0 @@
-# ototsukasa
-new generation toilet
