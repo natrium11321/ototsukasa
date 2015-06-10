@@ -14,6 +14,7 @@ class Drowner:
 		if keyword:
 			id = self.searcher.search(keyword)
 			if id:
+				print id
 				self.db.register_music(keyword, id)
 				self.player.play(id)
 		else:
