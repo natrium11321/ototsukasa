@@ -5,6 +5,7 @@ from comprehender import Comprehender
 from database import Database
 from drowner import Drowner
 from unlocker import Unlocker
+from hardware.getHuman import getHuman
 
 #---- enumeration ----
 MODE_UNLOCK = -2
@@ -47,11 +48,10 @@ def deal_with_no_recognition(refnorecogn):
 def mode_locked():
   print "  [locked mode]"
   #(should be written)
-  # * if 人感センサからの情報が陽性
-  # *   mode = MODE_UNLOCK
-  # * #end if
-
-  return
+  mode = MODE_LOCKED
+  if getHuman():
+     mode = MODE_UNLOCK
+  return mode
 
 #( mode_unlock : unit -> mode )
 def mode_unlock():
@@ -61,10 +61,10 @@ def mode_unlock():
   else:
     norecogn = 0
     while norecogn < MAX_RETRY:
-  
+
       print "  [unlock mode]"
       result = get_input()
-  
+
       if result == None:
         norecogn += 1
         deal_with_no_recognition(norecogn)
@@ -78,7 +78,7 @@ def mode_unlock():
             print "unlock failed, please try again."
           else:
             print "unlock failed for consecutive three times."
- 
+
     #end while
     return MODE_LOCKED
 
