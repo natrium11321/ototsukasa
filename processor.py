@@ -119,8 +119,8 @@ def mode_review():
     if result == None:
       deal_with_no_recognition(norecogn)
     else:
-      #(should be written)
-      #( 評価処理：ReviewSenderを呼ぶ )
+      #review登録
+      db.register_review(result)
       return MODE_HOME
 
 
