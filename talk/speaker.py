@@ -7,12 +7,4 @@ class Speaker:
 	
 	# speed : 50-300
 	def speak(self, text, speed = 100):
-		subprocess.call("/home/pi/aquestalkpi/AquesTalkPi -s " + str(speed) + " " + text + " | aplay", shell = True)
-
-def main():
-	speaker = Speaker()
-	speaker.speak(u"こんにちは")
-
-#---- execute ----
-if __name__ == "__main__":
-  main()
+		subprocess.call('/home/pi/aquestalkpi/AquesTalkPi -s " + str(speed) + " " + text + " | aplay -D "hw:0,0"', shell = True)

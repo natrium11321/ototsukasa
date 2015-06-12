@@ -108,6 +108,7 @@ def mode_search():
   norecogn = 0
   while norecogn < MAX_RETRY:
 
+    speaker.speak(u"いいよ")
     print "  [search mode]"
     speaker.speak(u"検索ワードは何ですか？")
     result = get_input()
@@ -127,6 +128,7 @@ def mode_search():
 def mode_play():
 
   LED.LEDon('g')
+  speaker.speak(u"いいよ")
   print "  [play mode]"
   drowner.drown()
   return MODE_HOME
@@ -177,7 +179,6 @@ def mode_home():
 
 
 def main():
-  speaker.speak("test")
   #---- 初期化 ----
   mode = MODE_LOCKED
   for c in ['r','g','y']:
