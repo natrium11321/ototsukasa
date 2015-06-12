@@ -1,4 +1,6 @@
-﻿from database import Database
+﻿# -*- coding: utf-8 -*-
+
+from database import Database
 from player import Player
 from speaker import Speaker
 from you_tube_searcher import YouTubeSearcher
