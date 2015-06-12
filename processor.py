@@ -154,11 +154,7 @@ def mode_home():
     return MODE_HOME
   else:
     words_dict = comprehender.comprehend(result)
-<<<<<<< HEAD
-    print (" ".join(words_dict['all']).encode("utf-8"))
-=======
     #print ("[" + (" ".join(words_dict['all']).encode("utf-8")) + "]")
->>>>>>> 7fe83d51a67cb1926c891bf826c16745ebcafb4d
 
     #( 超絶単純な判定によるコマンド認識 )
     if u"終了" in words_dict['all']:
