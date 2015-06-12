@@ -207,7 +207,7 @@ def main():
       else:
         print "!---[BUG] This cannot happen."
         mode = MODE_HOME
-      if !getHuman():
+      if not getHuman():
         mode = MODE_LOCKED
         self.db.update_status(False)
 
