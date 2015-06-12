@@ -40,7 +40,7 @@ def get_input():
     print ("> " + result)
 
   LED.LEDoff('y')
-  return res
+  return result
 #  return raw_input().decode('utf-8')
 
   LED.LEDoff('y')
