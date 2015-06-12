@@ -1,4 +1,4 @@
-import subprocess
+ï»¿import subprocess
 
 class Speaker:
 	
@@ -11,7 +11,7 @@ class Speaker:
 
 def main():
 	speaker = Speaker()
-	speaker.speak(u"‚±‚ñ‚É‚¿‚Í")
+	speaker.speak(u"ã“ã‚“ã«ã¡ã¯")
 
 #---- execute ----
 if __name__ == "__main__":
