@@ -9,7 +9,7 @@ class Speaker:
 	def speak(self, text, speed = 100):
 		subprocess.call("/home/pi/aquestalkpi/AquesTalkPi -s " + str(speed) + " " + text + " | aplay", shell = True)
 
-def main()
+def main():
 	speaker = Speaker()
 	speaker.speak("‚±‚ñ‚É‚¿‚Í")
 
