@@ -6,7 +6,7 @@ class Speaker:
 		pass
 	
 	def speak(self, text):
-		speech = subprocess.check_output(["/home/pi/aquestalkpi/AquesTalkPi", text]).encode("utf-8")
+		speech = subprocess.check_output(["/home/pi/aquestalkpi/AquesTalkPi", text]).encode()
 		print speech
 		subprocess.call(["aplay", speech])
 
