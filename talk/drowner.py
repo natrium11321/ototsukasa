@@ -25,6 +25,6 @@ class Drowner:
 			row = self.db.fetch_music_randomly()
 			id = row["url"]
 			address = row["address"]
-			self.speaker.speak(address + u"のトイレから")
+			self.speaker.speak(address + u"のトイレからです")
 			self.player.play(id)
 		return
