@@ -20,21 +20,36 @@ function initialize() {
 
 function makeMarker(info) {
 
-  if (info["empty"] > 0){
-    //空き有り
-    if (info["empty"] > 1){
-      //空き2以上 アイコン白
-      var icon = "https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=WC|FFFFFF";
-    }else{
-      //空き1　アイコン黄色
-      var icon = "https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=WC|FFFF00";
-    }
-    var content = '<h1>' + info["address"] + '</h1><h2>空き:'+info["empty"]+' 予約中:'+ info["reserved"] + ' 使用中:' + info["occupied"] + '</h2><p>最新のレビュー:' + info["review_comment"] + '</p><p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="sex" value="F"><input type="hidden" name="pos_id" value=' + info["pos_id"] + '><div class="buttonarea"><input type="submit" value="予約" class="btn btn-default"></div></form></p>'
+  //トイレの状態を表すピクトグラム
+  var empty ="white.png";
+  var occupied = "red.png";
+  var reserved = "yellow.png";
 
+  var icon;
+  if (info["empty"] == 0){
+    icon = "red.png";
+  }else if(info["empty"] == 1){
+    icon = "yellow.png";
   }else{
-    //空き無し　アイコン赤
-    var icon =   "https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=WC|FF0000";
-    var content = '<h1>' + info["address"] + '</h1><h2>空き:'+info["empty"]+' 予約中:'+ info["reserved"] + ' 使用中:' + info["occupied"] + '</h2>'
+    icon = "white.png";
+  }
+
+  var content = '<h1>' + info["address"] + '</h1>'
+
+  for (var i=0;i<info["empty"];i++){
+    content += '<img src="' + empty +'" width="30px" height="30px" alt="空き">';
+  }
+  for (var i=0;i<info["reserved"];i++){
+    content += '<img src="'+occupied+'" width="30px" height="30px" alt="予約済み">';
+  }
+  for (var i=0;i<info["occupied"];i++){
+    content += '<img src="'+reserved+'" width="30px" height="30px" alt="使用中">';
+  }
+  content += '<p>最新のレビュー:' + info["review_comment"] + '</p>'
+
+  //空きがあるときは予約ボタン
+  if (info["empty"] > 0){
+    content +=   '<p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="sex" value="M"><input type="hidden" name="pos_id" value=' + info["pos_id"] + '><div class="buttonarea"><input type="submit" value="予約" class="btn btn-default"></div></form></p>'
   }
 
   var marker = new google.maps.Marker({
