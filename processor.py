@@ -177,6 +177,7 @@ def mode_home():
 
 
 def main():
+  speaker.speak("test")
   #---- 初期化 ----
   mode = MODE_LOCKED
   for c in ['r','g','y']:
