@@ -33,7 +33,12 @@ def get_input():
   LED.LEDon('y')
   print "* waiting input..."
   result = listener.listen()
-  print ("> " + result)
+
+  if result == None:
+    print "(None)"
+  else:
+    print ("> " + result)
+
   LED.LEDoff('y')
   return result
 #  return raw_input().decode('utf-8')
