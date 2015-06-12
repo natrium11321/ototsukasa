@@ -37,6 +37,11 @@ def get_input():
   return res
 #  return raw_input().decode('utf-8')
 
+  LED.LEDoff('y')
+  return result
+# use below instead if you'd like to input string from standard input
+#   return raw_input().decode('utf-8')
+
 
 #( deal_with_no_recognition : int ref -> unit )
 def deal_with_no_recognition(refnorecogn):
@@ -149,7 +154,11 @@ def mode_home():
     return MODE_HOME
   else:
     words_dict = comprehender.comprehend(result)
+<<<<<<< HEAD
     print (" ".join(words_dict['all']).encode("utf-8"))
+=======
+    #print ("[" + (" ".join(words_dict['all']).encode("utf-8")) + "]")
+>>>>>>> 7fe83d51a67cb1926c891bf826c16745ebcafb4d
 
     #( 超絶単純な判定によるコマンド認識 )
     if u"終了" in words_dict['all']:
@@ -170,7 +179,6 @@ def main():
   mode = MODE_LOCKED
   for c in ['r','g','y']:
       LED.LEDoff(c)
-  #mode = MODE_HOME
 
   speaker.speak("おはようございます")
 
