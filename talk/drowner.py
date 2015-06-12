@@ -1,4 +1,4 @@
-from database import Database
+ï»¿from database import Database
 from player import Player
 from speaker import Speaker
 from you_tube_searcher import YouTubeSearcher
@@ -23,6 +23,6 @@ class Drowner:
 			row = self.db.fetch_music_randomly()
 			id = row["url"]
 			address = row["address"]
-			self.speaker.speak(address + "‚ÌƒgƒCƒŒ‚©‚ç")
+			self.speaker.speak(address + u"ã®ãƒˆã‚¤ãƒ¬ã‹ã‚‰")
 			self.player.play(id)
 		return
