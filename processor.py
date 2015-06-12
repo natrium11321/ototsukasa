@@ -41,7 +41,8 @@ def get_input():
 
   LED.LEDoff('y')
   return result
-#  return raw_input().decode('utf-8')
+# use below instead if you'd like to input string from standard input
+#   return raw_input().decode('utf-8')
 
 
 #( deal_with_no_recognition : int ref -> unit )
@@ -155,7 +156,7 @@ def mode_home():
     return MODE_HOME
   else:
     words_dict = comprehender.comprehend(result)
-    print ("[" + (" ".join(words_dict['all']).encode("utf-8")) + "]")
+    #print ("[" + (" ".join(words_dict['all']).encode("utf-8")) + "]")
 
     #( 超絶単純な判定によるコマンド認識 )
     if u"終了" in words_dict['all']:
@@ -176,7 +177,6 @@ def main():
   mode = MODE_LOCKED
   for c in ['r','g','y']:
       LED.LEDoff(c)
-  #mode = MODE_HOME
 
   while mode != MODE_QUIT:
 
