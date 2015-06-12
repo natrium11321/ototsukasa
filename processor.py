@@ -5,6 +5,7 @@ from talk.comprehender import Comprehender
 from talk.database import Database
 from talk.drowner import Drowner
 from talk.unlocker import Unlocker
+from talk.speaker import Speaker
 from hardware.getHuman import getHuman
 from hardware import LED
 
@@ -25,6 +26,7 @@ comprehender = Comprehender()
 db = Database('157.82.7.193')
 unlocker = Unlocker(db)
 drowner = Drowner(db)
+speaker = Speaker()
 
 #( get_input : unit -> (string | None) )
 def get_input():
@@ -96,6 +98,7 @@ def mode_search():
   while norecogn < MAX_RETRY:
 
     print "  [search mode]"
+    speaker.speak("検索ワードは何ですか？")
     result = get_input()
 
     print result #検索キーワードを出力
