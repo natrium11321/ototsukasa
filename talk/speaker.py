@@ -5,8 +5,8 @@ class Speaker:
 	def __init__(self):
 		pass
 	
-	def speak(self, text):
-		subprocess.call("/home/pi/aquestalkpi/AquesTalkPi " + text + " | aplay", shell = True)
+	def speak(self, text, speed = 1):
+		subprocess.call("/home/pi/aquestalkpi/AquesTalkPi -s " + str(speed) + " " + text + " | aplay", shell = True)
 
 if __name__ == "__main__":
 	speaker = Speaker()
