@@ -8,6 +8,7 @@ from talk.unlocker import Unlocker
 from talk.speaker import Speaker
 from hardware.getHuman import getHuman
 from hardware import LED
+import time
 
 #---- enumeration ----
 MODE_UNLOCK = -2
@@ -64,6 +65,7 @@ def deal_with_no_recognition(refnorecogn):
 #( mode_locked : unit -> mode )
 def mode_locked():
   print "  [locked mode]"
+  time.sleep(1)
   if getHuman():
     return MODE_UNLOCK
   else:
