@@ -209,7 +209,7 @@ def main():
         mode = MODE_HOME
       if not getHuman():
         mode = MODE_LOCKED
-        self.db.update_status(False)
+        db.update_status(False)
 
   #end while
 
