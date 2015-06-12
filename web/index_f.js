@@ -24,16 +24,16 @@ function makeMarker(info) {
     //空き有り
     if (info["empty"] > 1){
       //空き2以上 アイコン白
-      var icon = "https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=WC|FFFFFF";
+      var icon = "white.png";
     }else{
       //空き1　アイコン黄色
-      var icon = "https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=WC|FFFF00";
+      var icon = "yellow.png";
     }
     var content = '<h1>' + info["address"] + '</h1><h2>空き:'+info["empty"]+' 予約中:'+ info["reserved"] + ' 使用中:' + info["occupied"] + '</h2><p>最新のレビュー:' + info["review_comment"] + '</p><p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="sex" value="F"><input type="hidden" name="pos_id" value=' + info["pos_id"] + '><div class="buttonarea"><input type="submit" value="予約" class="btn btn-default"></div></form></p>'
 
   }else{
     //空き無し　アイコン赤
-    var icon =   "https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=WC|FF0000";
+    var icon =   "red.png";
     var content = '<h1>' + info["address"] + '</h1><h2>空き:'+info["empty"]+' 予約中:'+ info["reserved"] + ' 使用中:' + info["occupied"] + '</h2>'
   }
 
