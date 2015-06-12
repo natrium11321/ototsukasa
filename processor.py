@@ -32,10 +32,9 @@ speaker = Speaker()
 def get_input():
   LED.LEDon('y')
   print "* waiting input..."
-  result = listener.listen()
-  print ("> " + result)
+  res = listener.listen()
   LED.LEDoff('y')
-  return result
+  return res
 #  return raw_input().decode('utf-8')
 
 
@@ -78,15 +77,15 @@ def mode_unlock():
         deal_with_no_recognition(norecogn)
       else:
         if unlocker.try_to_unlock(result):
-          print "* unlock successfully"
+          print "unlock successfully"
           LED.LEDoff('r')
           return MODE_HOME
         else:
           norecogn += 1
           if norecogn < MAX_RETRY:
-            print "!---unlock failed, please try again."
+            print "unlock failed, please try again."
           else:
-            print "!---unlock failed for consecutive three times."
+            print "unlock failed for consecutive three times."
 
     #end while
     return MODE_LOCKED
@@ -150,7 +149,7 @@ def mode_home():
     return MODE_HOME
   else:
     words_dict = comprehender.comprehend(result)
-    print ("[" + (" ".join(words_dict['all']).encode("utf-8")) + "]")
+    print (" ".join(words_dict['all']).encode("utf-8"))
 
     #( 超絶単純な判定によるコマンド認識 )
     if u"終了" in words_dict['all']:
@@ -172,6 +171,8 @@ def main():
   for c in ['r','g','y']:
       LED.LEDoff(c)
   #mode = MODE_HOME
+
+  speaker.speak("おはようございます")
 
   while mode != MODE_QUIT:
 
