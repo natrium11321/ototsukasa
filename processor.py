@@ -35,7 +35,7 @@ def get_input():
   result = listener.listen()
 
   if result is None:
-    print "(None)"
+    pass # print "(None)"
   else:
     print ("> " + result)
 
@@ -83,7 +83,7 @@ def mode_unlock():
       print "  [unlock mode]"
       result = get_input()
 
-      if result == None:
+      if result is None:
         norecogn += 1
         deal_with_no_recognition(norecogn)
       else:
@@ -112,8 +112,8 @@ def mode_search():
     speaker.speak(u"検索ワードは何ですか？")
     result = get_input()
 
-    print result #検索キーワードを出力
-    if result == None:
+    # print result #検索キーワードを出力
+    if result is None:
       deal_with_no_recognition(norecogn)
     else:
       drowner.drown(result)
@@ -139,7 +139,7 @@ def mode_review():
     print "  [review mode]"
     result = get_input()
 
-    if result == None:
+    if result is None:
       deal_with_no_recognition(norecogn)
     else:
       #review登録
@@ -155,7 +155,7 @@ def mode_home():
   print "  [command mode]"
   result = get_input()
 
-  if result == None:
+  if result is None:
     print ("!---No word recognized.")
     return MODE_HOME
   else:
