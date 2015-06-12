@@ -10,4 +10,4 @@ class Speaker:
 
 if __name__ == "__main__":
 	speaker = Speaker()
-	speaker.speak("test")
+	speaker.speak(raw_input().rstrip())
