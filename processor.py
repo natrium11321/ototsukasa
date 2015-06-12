@@ -32,7 +32,13 @@ speaker = Speaker()
 def get_input():
   LED.LEDon('y')
   print "* waiting input..."
-  res = listener.listen()
+  result = listener.listen()
+
+  if result is None:
+    print "(None)"
+  else:
+    print ("> " + result)
+
   LED.LEDoff('y')
   return res
 #  return raw_input().decode('utf-8')
