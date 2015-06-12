@@ -193,23 +193,28 @@ def main():
 
     if mode == MODE_LOCKED:
       mode = mode_locked()
-    elif mode == MODE_UNLOCK:
-      mode = mode_unlock()
-    elif mode == MODE_HOME:
-      mode = mode_home()
-    elif mode == MODE_SEARCH:
-      mode = mode_search()
-    elif mode == MODE_PLAY:
-      mode = mode_play()
-    elif mode == MODE_REVIEW:
-      mode = mode_review()
     else:
-      print "!---[BUG] This cannot happen."
-      mode = MODE_HOME
+      if mode == MODE_UNLOCK:
+        mode = mode_unlock()
+      elif mode == MODE_HOME:
+        mode = mode_home()
+      elif mode == MODE_SEARCH:
+        mode = mode_search()
+      elif mode == MODE_PLAY:
+        mode = mode_play()
+      elif mode == MODE_REVIEW:
+        mode = mode_review()
+      else:
+        print "!---[BUG] This cannot happen."
+        mode = MODE_HOME
+      if not getHuman():
+        mode = MODE_LOCKED
+        db.update_status(False)
 
   #end while
 
   print "  [quit]"
+  speaker.speak("さよなら")
   return
 
 #---- execute ----
