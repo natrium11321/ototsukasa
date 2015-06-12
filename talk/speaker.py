@@ -7,3 +7,4 @@ class Speaker:
 	
 	def speak(self, s):
 		subprocess.call(["~/aquestalkpi/AquesTalkPi", s, "|", "aplay"])
+#hoge
