@@ -18,3 +18,9 @@ INSERT INTO status VALUES (NULL,4, 'Empty', NULL);
 
 INSERT INTO location VALUES (NULL,1,35.712678,139.761989,'東京大学工学部６号館');
 INSERT INTO location VALUES (NULL,2,35.712678,139.761989,'東京大学工学部６号館');
+
+/*テンプレート
+INSERT INTO toilets VALUES (NULL,3,'M'); --数字は位置のID適当に増やす 'F' or 'M'
+INSERT INTO status VALUES (NULL,4, 'Empty', NULL); --数字だけ増やす
+INSERT INTO location VALUES (NULL,1,35.712678,139.761989,'東京大学工学部６号館'); --数字は位置ID 緯度、経度
+*/
