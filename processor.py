@@ -98,7 +98,7 @@ def mode_search():
   while norecogn < MAX_RETRY:
 
     print "  [search mode]"
-    speaker.speak("検索ワードは何ですか？")
+    speaker.speak(u"検索ワードは何ですか？")
     result = get_input()
 
     print result #検索キーワードを出力
