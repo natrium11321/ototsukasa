@@ -81,6 +81,7 @@ def mode_unlock():
     while norecogn < MAX_RETRY:
 
       print "  [unlock mode]"
+      speaker.speak("パスワードを言ってください")
       result = get_input()
 
       if result is None:
@@ -108,8 +109,8 @@ def mode_search():
   norecogn = 0
   while norecogn < MAX_RETRY:
 
-    speaker.speak("IIYO")
     print "  [search mode]"
+    speaker.speak("検索ワードを言ってください")
     result = get_input()
 
     # print result #検索キーワードを出力
@@ -127,7 +128,6 @@ def mode_search():
 def mode_play():
 
   LED.LEDon('g')
-  speaker.speak("IIYO")
   print "  [play mode]"
   drowner.drown()
   return MODE_HOME
@@ -138,6 +138,7 @@ def mode_review():
   norecogn = 0
   while norecogn < MAX_RETRY:
     print "  [review mode]"
+    speaker.speak("評価を教えてください")
     result = get_input()
 
     if result is None:
@@ -154,6 +155,7 @@ def mode_home():
   LED.LEDoff('g')
   norecogn = 0
   print "  [command mode]"
+  speaker.speak("何をしますか？")
   result = get_input()
 
   if result is None:
@@ -183,7 +185,7 @@ def main():
   for c in ['r','g','y']:
       LED.LEDoff(c)
 
-  speaker.speak("Good morning!")
+  speaker.speak("こんにちは！")
 
   while mode != MODE_QUIT:
 
