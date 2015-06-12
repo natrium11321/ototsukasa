@@ -11,7 +11,7 @@ class Speaker:
 
 def main():
 	speaker = Speaker()
-	speaker.speak("‚±‚ñ‚É‚¿‚Í")
+	speaker.speak(u"‚±‚ñ‚É‚¿‚Í")
 
 #---- execute ----
 if __name__ == "__main__":
