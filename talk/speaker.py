@@ -6,7 +6,7 @@ class Speaker:
 		pass
 	
 	def speak(self, s):
-		subprocess.call(["~/aquestalkpi/AquesTalkPi", s, "|", "aplay"])
+		subprocess.call(["~/aquestalkpi/AquesTalkPi", s])
 
 if __name__ == "__main__":
 	speaker = Speaker()
