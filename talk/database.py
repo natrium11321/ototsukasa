@@ -63,7 +63,7 @@ class Database:
 
     # fetch the newest reservation
     def fetch_reservation(self):
-        return self.fetch(u'select * from reservations where toilet_id = {0} order by `updatetime` limit 1'.format(self.MY_TOILET_ID))[0]
+        return self.fetch(u'select * from reservations where toilet_id = {0} order by `updatetime` desc limit 1'.format(self.MY_TOILET_ID))[0]
 
     # fetch the newest reservation
     def update_status(self, is_occupied):
