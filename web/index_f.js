@@ -9,7 +9,7 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-  $.getJSON("/cgi-bin/get_info.py?sex=M",function(data){
+  $.getJSON("/cgi-bin/get_info.py?sex=F",function(data){
     for (var i = 0; i < data.length ; i++){
       info = data[i];
       makeMarker(info);
@@ -29,7 +29,7 @@ function makeMarker(info) {
       //空き1　アイコン黄色
       var icon = "https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=WC|FFFF00";
     }
-    var content = '<h1>' + info["address"] + '</h1><h2>空き:'+info["empty"]+' 予約中:'+ info["reserved"] + ' 使用中:' + info["occupied"] + '</h2><p>最新のレビュー:' + info["review_comment"] + '</p><p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="sex" value="M"><input type="hidden" name="pos_id" value=' + info["pos_id"] + '><div class="buttonarea"><input type="submit" value="予約" class="btn btn-default"></div></form></p>'
+    var content = '<h1>' + info["address"] + '</h1><h2>空き:'+info["empty"]+' 予約中:'+ info["reserved"] + ' 使用中:' + info["occupied"] + '</h2><p>最新のレビュー:' + info["review_comment"] + '</p><p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="sex" value="F"><input type="hidden" name="pos_id" value=' + info["pos_id"] + '><div class="buttonarea"><input type="submit" value="予約" class="btn btn-default"></div></form></p>'
 
   }else{
     //空き無し　アイコン赤

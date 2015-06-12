@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>きばログ</title>
+    <title>トイレットペッパー</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <meta name="author" content="TakahiroSugiura">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+      html,body{
+        height: 100%;
+      }
       .myheader {
         height: 10%;
         margin: 0;
         background-color: #4e454a;
         margin-bottom: 40px;
-        color: #fff
+        color: #fff;
+      }
+      .myheader p {
+        margin-bottom: 0px;
+      }
+      .myheader h1,a{
+        margin-top: 0px;
+        color: #fff;
       }
       .main {
-        height: 85%;
+        height: 80%;
+      }
+      footer {
+        text-align: center;
       }
     </style>
   </head>
   <body>
     <div class="myheader">
       <div class="container">
-        <h1>きばログ</h1>
+        <p>トイレットペッパー</p>
+        <h1><a href="index.html">TOILET PEPPER for MEN</a></h1>
       </div>
     </div>
     <div class="main">
@@ -31,6 +46,9 @@
         <h1>予約が完了しました。</h1>
       </div>
     </div>
+    <footer>
+      <p>© 2015 数理実験7研班</p>
+    </footer>
     <script type="text/javascript">
       var prm = window.location.search;
       var id = prm.slice(prm.indexOf("id=")+3,prm.indexOf("&password"));
