@@ -8,6 +8,7 @@ from talk.unlocker import Unlocker
 from talk.speaker import Speaker
 from hardware.getHuman import getHuman
 from hardware import LED
+import time
 
 #---- enumeration ----
 MODE_UNLOCK = -2
@@ -35,12 +36,12 @@ def get_input():
   result = listener.listen()
 
   if result is None:
-    print "(None)"
+    pass # print "(None)"
   else:
     print ("> " + result)
 
   LED.LEDoff('y')
-  return res
+  return result
 #  return raw_input().decode('utf-8')
 
   LED.LEDoff('y')
@@ -64,6 +65,7 @@ def deal_with_no_recognition(refnorecogn):
 #( mode_locked : unit -> mode )
 def mode_locked():
   print "  [locked mode]"
+  time.sleep(1)
   if getHuman():
     return MODE_UNLOCK
   else:
@@ -81,9 +83,10 @@ def mode_unlock():
     while norecogn < MAX_RETRY:
 
       print "  [unlock mode]"
+      speaker.speak("パスワードを言ってください")
       result = get_input()
 
-      if result == None:
+      if result is None:
         norecogn += 1
         deal_with_no_recognition(norecogn)
       else:
@@ -109,11 +112,11 @@ def mode_search():
   while norecogn < MAX_RETRY:
 
     print "  [search mode]"
-    speaker.speak(u"検索ワードは何ですか？")
+    speaker.speak("検索ワードを言ってください")
     result = get_input()
 
-    print result #検索キーワードを出力
-    if result == None:
+    # print result #検索キーワードを出力
+    if result is None:
       deal_with_no_recognition(norecogn)
     else:
       drowner.drown(result)
@@ -137,9 +140,10 @@ def mode_review():
   norecogn = 0
   while norecogn < MAX_RETRY:
     print "  [review mode]"
+    speaker.speak("評価を教えてください")
     result = get_input()
 
-    if result == None:
+    if result is None:
       deal_with_no_recognition(norecogn)
     else:
       #review登録
@@ -153,9 +157,10 @@ def mode_home():
   LED.LEDoff('g')
   norecogn = 0
   print "  [command mode]"
+  speaker.speak("何をしますか？")
   result = get_input()
 
-  if result == None:
+  if result is None:
     print ("!---No word recognized.")
     return MODE_HOME
   else:
@@ -182,29 +187,34 @@ def main():
   for c in ['r','g','y']:
       LED.LEDoff(c)
 
-  speaker.speak("おはようございます")
+  speaker.speak("こんにちは！")
 
   while mode != MODE_QUIT:
 
     if mode == MODE_LOCKED:
       mode = mode_locked()
-    elif mode == MODE_UNLOCK:
-      mode = mode_unlock()
-    elif mode == MODE_HOME:
-      mode = mode_home()
-    elif mode == MODE_SEARCH:
-      mode = mode_search()
-    elif mode == MODE_PLAY:
-      mode = mode_play()
-    elif mode == MODE_REVIEW:
-      mode = mode_review()
     else:
-      print "!---[BUG] This cannot happen."
-      mode = MODE_HOME
+      if mode == MODE_UNLOCK:
+        mode = mode_unlock()
+      elif mode == MODE_HOME:
+        mode = mode_home()
+      elif mode == MODE_SEARCH:
+        mode = mode_search()
+      elif mode == MODE_PLAY:
+        mode = mode_play()
+      elif mode == MODE_REVIEW:
+        mode = mode_review()
+      else:
+        print "!---[BUG] This cannot happen."
+        mode = MODE_HOME
+      if not getHuman():
+        mode = MODE_LOCKED
+        db.update_status(False)
 
   #end while
 
   print "  [quit]"
+  speaker.speak("さよなら")
   return
 
 #---- execute ----

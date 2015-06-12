@@ -55,7 +55,7 @@ class Database:
 
     # fetch music information
     def fetch_music_randomly(self):
-        return self.fetch(u'select * from musics order by rand() limit 1')[0]
+        return self.fetch(u'SELECT url ,name AS address FROM musics AS m LEFT JOIN toilets AS t ON m.toilet_id = t.id LEFT JOIN location AS l ON t.pos_id = l.pos_id order by rand() limit 1')[0]
 
     # post new review
     #def post_review(self, star, text):

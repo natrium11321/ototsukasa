@@ -13,60 +13,51 @@
         height: 100%;
       }
       .myheader {
-        height: 15%;
+        height: 10%;
         margin: 0;
         background-color: #4e454a;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         color: #fff;
       }
       .myheader p {
-        margin-top: 10px;
         margin-bottom: 0px;
       }
       .myheader h1,a{
         margin-top: 0px;
         color: #fff;
-        margin-bottom: 0px;
-      }
-      .right {
-        text-align: right;
       }
       .main {
-        height: 75%;
+        height: 80%;
       }
-      #map-canvas {
-        height: 480px;
-        margin-bottom: 20px;
-        width: 100%;
-      }
-      footer p{
-        text-align: center;
-        margin: 0px;
-      }
-      #map-canvas .buttonarea{
+      footer {
         text-align: center;
       }
     </style>
-
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <script src="index.js"></script>
   </head>
   <body>
     <div class="myheader">
       <div class="container">
         <p>トイレットペッパー</p>
-        <h1><a href="index.html">TOILET PEPPER for MEN</a></h1>
-        <div class="right">
-          <a href="index_f.html">女性版へ</a>
-        </div>
+        <h1><a href="index_f.html">TOILET PEPPER for WOMEN</a></h1>
       </div>
     </div>
-    <div class="container main">
-      <div id="map-canvas"></div>
+    <div class="main">
+      <div class="container" id="textarea">
+        <h1>予約が完了しました。</h1>
+      </div>
     </div>
     <footer>
       <p>© 2015 数理実験7研班</p>
     </footer>
+    <script type="text/javascript">
+      var prm = window.location.search;
+      var id = prm.slice(prm.indexOf("id=")+3,prm.indexOf("&password"));
+      var passcode = prm.slice(prm.indexOf("&password=")+10);
+      var ele = document.createElement("p");
+	    var str = document.createTextNode(id+" 番のトイレが予約されました。暗証番号は " + passcode + " です。");
+	    ele.appendChild(str);
+      var textarea = document.getElementById('textarea')
+      textarea.appendChild(ele);
+    </script>
   </body>
 </html>
