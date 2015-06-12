@@ -20,7 +20,7 @@ if ( os.environ['REQUEST_METHOD'] != "POST" ):
 form = cgi.FieldStorage()
 
 #check the paremeter
-if ("pos_id" not in form):
+if ("pos_id" not in form or "sex" not in form):
     print 'Content-type: text/html; charset=UTF-8'
     print  #end of header
     print "Paremeter error"
@@ -28,6 +28,7 @@ if ("pos_id" not in form):
     sys.exit()
 
 pid = str(form["pos_id"].value)
+sex = form["sex"].value
 
 
 #check whether the toilet is empty
@@ -35,7 +36,7 @@ connector = MySQLdb.connect(host="localhost", db="ototsukasa", user="ototsukasa"
 
 cursor = connector.cursor()
 
-with open("getemptytoiletid.sql") as f:
+with open("get_empty_toiletid.sql") as f:
     q = f.read().decode("utf-8") + pid + ';'
 cursor.execute(q)
 ids = cursor.fetchall()
@@ -63,7 +64,10 @@ else:
     connector.commit()
     print 'Content-type: text/html; charset=UTF-8'
     print "Status: 303 See other"
-    print "Location: /success.html?id=" + tid + "&password=" + password
+    if (sex == 'F'):
+        print "Location: /success_f.html?id=" + tid + "&password=" + password
+    else:
+        print "Location: /success.html?id=" + tid + "&password=" + password
     print  #end of header
 
 

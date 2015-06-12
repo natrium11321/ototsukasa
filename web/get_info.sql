@@ -1,18 +1,19 @@
 SELECT
   main.pos_id
-  ,pos_lat
-  ,pos_lng
+  ,lat
+  ,lng
   ,num
   ,empty_num
   ,occupied_num
   ,reserved_num
   ,comment
+  ,loc.name
+  ,sex
 FROM
   (
   SELECT
     pos_id
-    ,pos_lat
-    ,pos_lng
+    ,sex
     ,COUNT(*) AS num
     ,COUNT(toilet_status = 'Empty' or NULL) AS empty_num
     ,COUNT(toilet_status = 'Occupied' or NULL) AS occupied_num
@@ -22,16 +23,12 @@ FROM
     SELECT
       t.id
       ,pos_id
-      ,pos_lat
-      ,pos_lng
+      ,sex
       ,CASE WHEN empty = 'Occupied' THEN 'Occupied' WHEN empty = 'Empty' AND  TIMEDIFF(CURRENT_TIMESTAMP,reservedtime) < '00:10:00' THEN 'Reserved' ELSE 'Empty' END AS toilet_status
     FROM
       (
         SELECT
-          id
-          ,pos_id
-          ,pos_lat
-          ,pos_lng
+          *
         FROM
           toilets
       ) t
@@ -78,7 +75,7 @@ FROM
       t.id = r.toilet_id
     ) sub
   GROUP BY
-    pos_id,pos_lat,pos_lng
+    pos_id,sex
   ) main
 LEFT JOIN
   (
@@ -99,4 +96,12 @@ LEFT JOIN
   ) sub
 ON
   main.pos_id = sub.pos_id
-;
+LEFT JOIN
+  (
+    SELECT
+      *
+    FROM
+      location
+  ) loc
+ON
+  main.pos_id = loc.pos_id
