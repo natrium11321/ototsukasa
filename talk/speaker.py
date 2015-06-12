@@ -7,4 +7,4 @@ class Speaker:
 	
 	# speed : 50-300
 	def speak(self, text, speed = 100):
-		subprocess.call('/home/pi/aquestalkpi/AquesTalkPi -s " + str(speed) + " " + text + " | aplay -D "hw:0,0"', shell = True)
+		subprocess.call("/home/pi/aquestalkpi/AquesTalkPi -s " + str(speed) + " " + text + ' | aplay -D "hw:0,0"', shell = True)
