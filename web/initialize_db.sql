@@ -24,3 +24,271 @@ INSERT INTO toilets VALUES (NULL,3,'M'); --数字は位置のID適当に増や�
 INSERT INTO status VALUES (NULL,4, 'Empty', NULL); --数字だけ増やす
 INSERT INTO location VALUES (NULL,1,35.712678,139.761989,'東京大学工学部６号館'); --数字は位置ID 緯度、経度
 */
+
+INSERT INTO toilets VALUES (NULL,3,'F');
+INSERT INTO toilets VALUES (NULL,3,'F');
+INSERT INTO toilets VALUES (NULL,3,'F');
+INSERT INTO toilets VALUES (NULL,3,'F');
+INSERT INTO toilets VALUES (NULL,3,'F');
+INSERT INTO toilets VALUES (NULL,4,'M');
+INSERT INTO toilets VALUES (NULL,4,'M');
+INSERT INTO toilets VALUES (NULL,4,'M');
+INSERT INTO toilets VALUES (NULL,4,'M');
+INSERT INTO toilets VALUES (NULL,4,'M');
+
+INSERT INTO status VALUES (NULL,5, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,6, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,7, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,8, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,9, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,10, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,11, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,12, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,13, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,14, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,3,35.714218,139.761970,'東京大学工学部２号館');
+INSERT INTO location VALUES (NULL,4,35.714218,139.761970,'東京大学工学部２号館');
+
+INSERT INTO toilets VALUES (NULL,5,'F');
+INSERT INTO toilets VALUES (NULL,5,'F');
+INSERT INTO toilets VALUES (NULL,6,'M');
+INSERT INTO toilets VALUES (NULL,6,'M');
+
+INSERT INTO status VALUES (NULL,15, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,16, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,17, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,18, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,5,35.714290,139.759301,'東京大学工学部１４号館');
+INSERT INTO location VALUES (NULL,6,35.714290,139.759301,'東京大学工学部１４号館');
+
+INSERT INTO toilets VALUES (NULL,7,'F');
+INSERT INTO toilets VALUES (NULL,7,'F');
+INSERT INTO toilets VALUES (NULL,8,'M');
+INSERT INTO toilets VALUES (NULL,8,'M');
+
+INSERT INTO status VALUES (NULL,19, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,20, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,21, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,22, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,7,35.714880,139.759764,'東京大学工学部５号館');
+INSERT INTO location VALUES (NULL,8,35.714880,139.759764,'東京大学工学部５号館');
+
+INSERT INTO toilets VALUES (NULL,9,'F');
+INSERT INTO toilets VALUES (NULL,9,'F');
+INSERT INTO toilets VALUES (NULL,10,'M');
+INSERT INTO toilets VALUES (NULL,10,'M');
+INSERT INTO toilets VALUES (NULL,10,'M');
+INSERT INTO toilets VALUES (NULL,10,'M');
+
+INSERT INTO status VALUES (NULL,23, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,24, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,25, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,26, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,27, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,28, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,9,35.713460,139.761142,'東京大学法学部１号館');
+INSERT INTO location VALUES (NULL,10,35.713460,139.761142,'東京大学法学部１号館');
+
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,11,'F');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+INSERT INTO toilets VALUES (NULL,12,'M');
+
+INSERT INTO status VALUES (NULL,29, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,30, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,31, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,32, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,33, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,34, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,35, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,36, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,37, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,38, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,39, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,40, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,41, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,42, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,43, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,44, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,45, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,46, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,47, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,48, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,49, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,50, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,51, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,52, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,53, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,54, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,55, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,56, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,57, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,58, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,59, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,60, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,11,35.711123,139.765517,'東京大学医学部附属病院');
+INSERT INTO location VALUES (NULL,12,35.711123,139.765517,'東京大学医学部附属病院');
+
+INSERT INTO toilets VALUES (NULL,13,'F');
+INSERT INTO toilets VALUES (NULL,13,'F');
+INSERT INTO toilets VALUES (NULL,13,'F');
+INSERT INTO toilets VALUES (NULL,13,'F');
+INSERT INTO toilets VALUES (NULL,13,'F');
+INSERT INTO toilets VALUES (NULL,13,'F');
+INSERT INTO toilets VALUES (NULL,13,'F');
+INSERT INTO toilets VALUES (NULL,13,'F');
+INSERT INTO toilets VALUES (NULL,14,'M');
+INSERT INTO toilets VALUES (NULL,14,'M');
+INSERT INTO toilets VALUES (NULL,14,'M');
+INSERT INTO toilets VALUES (NULL,14,'M');
+INSERT INTO toilets VALUES (NULL,14,'M');
+INSERT INTO toilets VALUES (NULL,14,'M');
+INSERT INTO toilets VALUES (NULL,14,'M');
+INSERT INTO toilets VALUES (NULL,14,'M');
+
+INSERT INTO status VALUES (NULL,61, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,62, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,63, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,64, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,65, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,66, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,67, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,68, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,69, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,70, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,71, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,72, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,73, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,74, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,75, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,76, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,13,35.711123,139.765517,'東京大学総合図書館');
+INSERT INTO location VALUES (NULL,14,35.711123,139.765517,'東京大学総合図書館');
+
+INSERT INTO toilets VALUES (NULL,15,'F');
+INSERT INTO toilets VALUES (NULL,15,'F');
+INSERT INTO toilets VALUES (NULL,15,'F');
+INSERT INTO toilets VALUES (NULL,16,'M');
+INSERT INTO toilets VALUES (NULL,16,'M');
+INSERT INTO toilets VALUES (NULL,16,'M');
+
+INSERT INTO status VALUES (NULL,77, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,78, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,79, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,80, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,81, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,82, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,15,35.712902,139.761041,'東京大学法学部２号館');
+INSERT INTO location VALUES (NULL,16,35.712902,139.761041,'東京大学法学部２号館');
+
+INSERT INTO toilets VALUES (NULL,17,'F');
+INSERT INTO toilets VALUES (NULL,17,'F');
+INSERT INTO toilets VALUES (NULL,17,'F');
+INSERT INTO toilets VALUES (NULL,18,'M');
+INSERT INTO toilets VALUES (NULL,18,'M');
+INSERT INTO toilets VALUES (NULL,18,'M');
+
+INSERT INTO status VALUES (NULL,83, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,84, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,85, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,86, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,87, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,88, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,17,35.713286,139.763508,'東京大学理学部７号館');
+INSERT INTO location VALUES (NULL,18,35.713286,139.763508,'東京大学理学部７号館');
+
+INSERT INTO toilets VALUES (NULL,19,'F');
+INSERT INTO toilets VALUES (NULL,19,'F');
+INSERT INTO toilets VALUES (NULL,20,'M');
+INSERT INTO toilets VALUES (NULL,20,'M');
+
+INSERT INTO status VALUES (NULL,89, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,90, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,91, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,92, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,19,35.718686,139.759753,'地震研究所２号館');
+INSERT INTO location VALUES (NULL,20,35.718686,139.759753,'地震研究所２号館');
+
+INSERT INTO toilets VALUES (NULL,21,'F');
+INSERT INTO toilets VALUES (NULL,21,'F');
+INSERT INTO toilets VALUES (NULL,22,'M');
+INSERT INTO toilets VALUES (NULL,22,'M');
+
+INSERT INTO status VALUES (NULL,93, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,94, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,95, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,96, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,21,35.717308,139.761017,'東京大学家畜病院');
+INSERT INTO location VALUES (NULL,22,35.717308,139.761017,'東京大学家畜病院');
+
+INSERT INTO toilets VALUES (NULL,23,'F');
+INSERT INTO toilets VALUES (NULL,23,'F');
+INSERT INTO toilets VALUES (NULL,23,'F');
+INSERT INTO toilets VALUES (NULL,24,'M');
+INSERT INTO toilets VALUES (NULL,24,'M');
+INSERT INTO toilets VALUES (NULL,24,'M');
+
+INSERT INTO status VALUES (NULL,97, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,98, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,99, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,100, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,101, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,102, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,23,35.717308,139.761017,'東京大学農学部３号館');
+INSERT INTO location VALUES (NULL,24,35.717308,139.761017,'東京大学農学部３号館');
+
+INSERT INTO toilets VALUES (NULL,25,'F');
+INSERT INTO toilets VALUES (NULL,25,'F');
+INSERT INTO toilets VALUES (NULL,25,'F');
+INSERT INTO toilets VALUES (NULL,26,'M');
+INSERT INTO toilets VALUES (NULL,26,'M');
+INSERT INTO toilets VALUES (NULL,26,'M');
+
+INSERT INTO status VALUES (NULL,103, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,104, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,105, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,106, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,107, 'Empty', NULL);
+INSERT INTO status VALUES (NULL,108, 'Empty', NULL);
+
+INSERT INTO location VALUES (NULL,25,35.715480,139.764567,'東京大学情報基盤センター');
+INSERT INTO location VALUES (NULL,26,35.715480,139.764567,'東京大学情報基盤センター');
