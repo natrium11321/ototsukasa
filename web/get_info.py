@@ -15,14 +15,20 @@ cursor = connector.cursor()
 sex = form["sex"].value
 with open("get_info.sql") as f:
     query = f.read().decode('utf-8')
-query += "WHERE sex = '{0}';".format(sex)
+query += "WHERE sex = '{0}' ORDER BY t.pos_id,t.id;".format(sex)
 
 cursor.execute(query)
 res = cursor.fetchall()
 l = []
+now = 0
 for r in res:
-    m = {'pos_id':r[0],'lat':r[1],'lng':r[2],'num':r[3],'empty':r[4],'occupied':r[5],'reserved':r[6],'review_comment':r[7],'address':r[8]}
-    l.append(m)
+    if r["pos_id"] != now:
+        if now != 0:
+            l.append(m)
+        now = r["pos_id"]
+        m = {'pos_id':r["pos_id"],'lat':r['lat'],'lng':r['lng'],'review_comment':r['comment'],'reviewedtime':r['reviewedtime'],'name':r['name'],toilets:[r['toilet_status']]}
+    else:
+        m["toilets"].append(r["toilet_status"])
 j = json.dumps(l)
 
 print "Content-type: text/javascript; charset=utf-8"
