@@ -10,6 +10,7 @@ function initialize() {
       mapOptions);
 
   $.getJSON("/cgi-bin/get_info.py?sex=M",function(data){
+    var currentInfoWindow = null;
     for (var i = 0; i < data.length ; i++){
       info = data[i];
       makeMarker(info);
@@ -64,7 +65,11 @@ function makeMarker(info) {
   });
 
   google.maps.event.addDomListener(marker,'click',function(){
+    if(currentInfoWindow){
+      currentInfoWindow.close();
+    }
     infowindow.open(map,marker);
+    currentInfoWindow = infowindow;
   })
 };
 
