@@ -28,8 +28,6 @@ MAX_RETRY = 3
 #---- initialize ----
 listener = Listener(600)
 comprehender = Comprehender()
-unlocker = Unlocker(db)
-drowner = Drowner(db)
 speaker = Speaker()
 diffuser = Diffuser()
 
@@ -239,9 +237,11 @@ def parse_arguments():
 
     args = parser.parse_args()
 
-    # load db
-    global db
+    # load db, unlocker and drowner
+    global db, unlocker, drowner
     db = Database(args.hostname)
+    unlocker = Unlocker(db)
+    drowner = Drowner(db)
 
 
 #---- execute ----
