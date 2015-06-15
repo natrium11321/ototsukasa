@@ -233,7 +233,7 @@ def main():
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-h', '--hostname', required=True)
+    parser.add_argument('-s', '--server-ip', required=True)
 
     args = parser.parse_args()
 
