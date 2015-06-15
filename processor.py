@@ -58,6 +58,7 @@ def deal_with_no_recognition(refnorecogn):
   refnorecogn += 1
   if refnorecogn < MAX_RETRY:
     print ("!---No word recognized.")
+    speaker.speak("もう一度言ってください")
     return
   else:
     print ("!---No word recognized for three consecutive times.")
@@ -150,6 +151,7 @@ def mode_review():
     else:
       #review登録
       db.register_review(result)
+      speaker.speak("レビューを登録しました。")
       return MODE_HOME
 
 
@@ -170,6 +172,7 @@ def mode_home():
 
   if result is None:
     print ("!---No word recognized.")
+    speaker.speak("もう一度言ってください")
     return MODE_HOME
   else:
     words_dict = comprehender.comprehend(result)
