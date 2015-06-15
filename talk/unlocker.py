@@ -13,7 +13,7 @@ class Unlocker:
 		status_time = status["updatetime"]
 		yoyaku = self.db.fetch_reservation()
 		yoyaku_time = yoyaku["updatetime"]
-		if status_time < yoyaku_time && now_time - yoyaku_time < timedelta(minutes = 10):
+		if status_time < yoyaku_time and now_time - yoyaku_time < timedelta(minutes = 10):
 			self.password = row["password"]
 			return True
 		else:
