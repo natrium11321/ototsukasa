@@ -30,7 +30,7 @@ db = Database('157.82.7.62')
 unlocker = Unlocker(db)
 drowner = Drowner(db)
 speaker = Speaker()
-diffuser = Diffuser()
+diffuser = Diffuser(speaker)
 
 #( get_input : unit -> (string | None) )
 def get_input():
