@@ -186,7 +186,7 @@ def mode_home():
       return MODE_PLAY
     elif u"評価" in words_dict['all']:
       return MODE_REVIEW
-    elif u"消臭" in words_dict['all']:
+    elif u"臭" in words_dict['all'] or u"消臭" in words_dict['all']:
       return MODE_DIFFUSE
     else:
       print "!---No command recognized."
