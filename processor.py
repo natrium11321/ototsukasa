@@ -202,12 +202,11 @@ def main():
 
   speaker.speak("こんにちは！")
 
-  counter = 0
-
   while mode != MODE_QUIT:
 
     if mode == MODE_LOCKED:
-      mode = mode_locked()
+      if getHuman():
+        mode = mode_locked()
     else:
       if mode == MODE_UNLOCK:
         mode = mode_unlock()
@@ -225,14 +224,8 @@ def main():
         print "!---[BUG] This cannot happen."
         mode = MODE_HOME
       if not getHuman():
-        if counter < 5:
-          counter += 1
-        else:
-          #5ループ連続で人がいないときはトイレを解放
-          mode = MODE_LOCKED
-          db.update_status(False)
-      else:
-        counter = 0
+        mode = MODE_LOCKED
+        db.update_status(False)
 
   #end while
 
