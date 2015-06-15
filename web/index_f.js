@@ -26,29 +26,30 @@ function makeMarker(info) {
   var reserved = "yellow.png";
 
   var icon;
-  if (info["empty"] == 0){
+  if (info["empty_num"] == 0){
     icon = "red.png";
-  }else if(info["empty"] == 1){
+  }else if(info["empty_num"] == 1){
     icon = "yellow.png";
   }else{
     icon = "white.png";
   }
 
-  var content = '<h1>' + info["address"] + '</h1>'
+  var content = '<h1>' + info["name"] + '</h1>'
 
-  for (var i=0;i<info["empty"];i++){
-    content += '<img src="' + empty +'" width="30px" height="30px" alt="空き">';
+  for(var i=0;i<info["toilets"].length;i++){
+    if (info["toilets"][i] === "Empty"){
+      content += '<img src="' + empty +'" width="30px" height="30px" alt="空き">';
+    }else if (info["toilets"][i] === "Reserved") {
+      content += '<img src="'+reserved+'" width="30px" height="30px" alt="予約済み">';
+    }else if (info["toilets"][i] === "Occupied") {
+      content += '<img src="'+occupied+'" width="30px" height="30px" alt="使用中">';
+    }
   }
-  for (var i=0;i<info["reserved"];i++){
-    content += '<img src="'+occupied+'" width="30px" height="30px" alt="予約済み">';
-  }
-  for (var i=0;i<info["occupied"];i++){
-    content += '<img src="'+reserved+'" width="30px" height="30px" alt="使用中">';
-  }
+
   content += '<p>最新のレビュー:' + info["review_comment"] + '</p>'
 
   //空きがあるときは予約ボタン
-  if (info["empty"] > 0){
+  if (info["empty_num"] > 0){
     content +=   '<p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="sex" value="M"><input type="hidden" name="pos_id" value=' + info["pos_id"] + '><div class="buttonarea"><input type="submit" value="予約" class="btn btn-default"></div></form></p>'
   }
 
@@ -64,7 +65,11 @@ function makeMarker(info) {
   });
 
   google.maps.event.addDomListener(marker,'click',function(){
+    if(currentInfoWindow){
+      currentInfoWindow.close();
+    }
     infowindow.open(map,marker);
+    currentInfoWindow = infowindow;
   })
 };
 
