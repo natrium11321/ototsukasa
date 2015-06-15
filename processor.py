@@ -228,10 +228,9 @@ def main():
         if counter < 5:
           counter += 1
         else:
-          #1000ループ連続で人がいないときはトイレを解放
+          #5ループ連続で人がいないときはトイレを解放
           mode = MODE_LOCKED
           db.update_status(False)
-        print counter #for test
       else:
         counter = 0
 
