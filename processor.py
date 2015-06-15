@@ -26,7 +26,7 @@ MAX_RETRY = 3
 #---- initialize ----
 listener = Listener(600)
 comprehender = Comprehender()
-db = Database('157.82.5.176')
+db = Database('157.82.7.62')
 unlocker = Unlocker(db)
 drowner = Drowner(db)
 speaker = Speaker()
