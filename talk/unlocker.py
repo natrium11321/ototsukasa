@@ -8,10 +8,12 @@ class Unlocker:
 		return
 	
 	def is_locked(self):
-		row = self.db.fetch_reservation()
-		updatetime = row["updatetime"]
-		nowtime = datetime.utcnow()
-		if nowtime - updatetime < timedelta(minutes = 10):
+		now_time = datetime.utcnow()
+		status = self.db.fetch_status()
+		status_time = status["updatetime"]
+		yoyaku = self.db.fetch_reservation()
+		yoyaku_time = yoyaku["updatetime"]
+		if status_time < yoyaku_time && now_time - yoyaku_time < timedelta(minutes = 10):
 			self.password = row["password"]
 			return True
 		else:

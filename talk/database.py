@@ -65,6 +65,10 @@ class Database:
     def fetch_reservation(self):
         return self.fetch(u'select * from reservations where toilet_id = {0} order by `updatetime` desc limit 1'.format(self.MY_TOILET_ID))[0]
 
+    # fetch the newest status
+    def fetch_status(self):
+        return self.fetch(u'select * from status where toilet_id = {0} order by `updatetime` desc limit 1'.format(self.MY_TOILET_ID))[0]
+
     # fetch the newest reservation
     def update_status(self, is_occupied):
         empty = "Occupied" if is_occupied else "Empty"
