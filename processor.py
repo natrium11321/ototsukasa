@@ -28,7 +28,6 @@ MAX_RETRY = 3
 #---- initialize ----
 listener = Listener(600)
 comprehender = Comprehender()
-db
 unlocker = Unlocker(db)
 drowner = Drowner(db)
 speaker = Speaker()
