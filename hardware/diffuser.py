@@ -14,12 +14,14 @@ class Diffuser:
 		"""
 		call aroma diffuser
 		"""
+		print("start")
 		GPIO.setmode(GPIO.BCM)
 		GPIO.setup(basepin, GPIO.OUT)
 		GPIO.output(basepin, GPIO.HIGH)
 		time.sleep(interval)
 		GPIO.output(basepin, GPIO.LOW)
 		GPIO.cleanup()
+		print("end")
 	
 	def diffuse(self):
 		threading.Thread(target = self.run).start()
