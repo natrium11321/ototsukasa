@@ -203,7 +203,7 @@ def main():
   speaker.speak("こんにちは！")
 
   counter = 0
-  
+
   while mode != MODE_QUIT:
 
     if mode == MODE_LOCKED:
@@ -225,7 +225,7 @@ def main():
         print "!---[BUG] This cannot happen."
         mode = MODE_HOME
       if not getHuman():
-        if counter < 1000:
+        if counter < 5:
           counter += 1
         else:
           #1000ループ連続で人がいないときはトイレを解放
