@@ -292,3 +292,16 @@ INSERT INTO status VALUES (NULL,108, 'Empty', NULL);
 
 INSERT INTO location VALUES (NULL,25,35.715480,139.764567,'東京大学情報基盤センター');
 INSERT INTO location VALUES (NULL,26,35.715480,139.764567,'東京大学情報基盤センター');
+
+INSERT INTO reviews VALUES (NULL,3,'いつも利用している者です．今までペーパーは三角折りされていなかったのですが，使うたびに三角折りしていたら，いつの間にかみんなが三角折りするようになりました．三角折りストの方におすすめです．',NULL);
+INSERT INTO reviews VALUES (NULL,6,'ミシン目のないトイレットペーパーを使うのはやめてほしい．',NULL);
+INSERT INTO reviews VALUES (NULL,7,'ゴキブリを発見しました．最悪です．',NULL);
+INSERT INTO reviews VALUES (NULL,10,'なんかこのトイレ，便座が低くないですか？　座っていると腰が痛くなります．',NULL);
+INSERT INTO reviews VALUES (NULL,11,'2つ重ねで柔らかく，肌触り最高のトイレットペーパーです．肌の弱い方にもおすすめ．',NULL);
+INSERT INTO reviews VALUES (NULL,14,'とってもクールでオシャレで，ついつい長居しちゃったよ．ここに住んでもいいくらいさ．',NULL);
+INSERT INTO reviews VALUES (NULL,15,'明るく清潔感があっていいトイレですね！　個室が広いのもポイント高いです．',NULL);
+INSERT INTO reviews VALUES (NULL,18,'大方満足ですが，替えのトイレットペーパーがおいていないのが不安です．',NULL);
+INSERT INTO reviews VALUES (NULL,19,'カギが壊れてます．取替え希望．',NULL);
+INSERT INTO reviews VALUES (NULL,22,'調子に乗ってプシュッしすぎたのでにおいがきつくなってるかも．',NULL);
+INSERT INTO reviews VALUES (NULL,23,'トイレ最高．',NULL);
+INSERT INTO reviews VALUES (NULL,26,'スッキリ！',NULL);
