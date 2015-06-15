@@ -21,14 +21,18 @@ cursor.execute(query)
 res = cursor.fetchall()
 l = []
 now = 0
+empty_num = 0
 for r in res:
-    if r["pos_id"] != now:
+    if r[1] != now:
         if now != 0:
             l.append(m)
-        now = r["pos_id"]
-        m = {'pos_id':r["pos_id"],'lat':r['lat'],'lng':r['lng'],'review_comment':r['comment'],'reviewedtime':r['reviewedtime'],'name':r['name'],toilets:[r['toilet_status']]}
+        now = r[1]
+        m = {'pos_id':r[1],'lat':r[2],'lng':r[3],'review_comment':r[6],'reviewedtime':str(r[7]),'name':r[4],'toilets':[r[8]],'empty_num':0}
     else:
-        m["toilets"].append(r["toilet_status"])
+        m["toilets"].append(r[8])
+
+    if (r[8] == 'Empty'):
+        m['empty_num'] += 1
 j = json.dumps(l)
 
 print "Content-type: text/javascript; charset=utf-8"
