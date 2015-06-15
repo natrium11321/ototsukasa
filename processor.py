@@ -202,6 +202,8 @@ def main():
 
   speaker.speak("こんにちは！")
 
+  counter = 0
+  
   while mode != MODE_QUIT:
 
     if mode == MODE_LOCKED:
