@@ -18,7 +18,6 @@ class Diffuser:
 		GPIO.setmode(GPIO.BCM)
 		GPIO.setup(basepin, GPIO.OUT)
 		GPIO.output(basepin, GPIO.HIGH)
-		time.sleep(3)
 		self.speaker.speak("5")
 		time.sleep(0.5)
 		self.speaker.speak("4")
