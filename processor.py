@@ -233,13 +233,13 @@ def main():
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--server-ip', required=True)
+    parser.add_argument('-s', '--serverip', required=True)
 
     args = parser.parse_args()
 
     # load db, unlocker and drowner
     global db, unlocker, drowner
-    db = Database(args.hostname)
+    db = Database(args.serverip)
     unlocker = Unlocker(db)
     drowner = Drowner(db)
 
