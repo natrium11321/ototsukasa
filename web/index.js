@@ -13,13 +13,13 @@ function initialize() {
     var currentInfoWindow = null;
     for (var i = 0; i < data.length ; i++){
       info = data[i];
-      makeMarker(info);
+      currentInfoWindow = makeMarker(info,currentInfoWindow);
     }
   })
 
 };
 
-function makeMarker(info) {
+function makeMarker(info,prevInfoWindow) {
 
   //トイレの状態を表すピクトグラム
   var empty ="white.png";
@@ -66,12 +66,12 @@ function makeMarker(info) {
   });
 
   google.maps.event.addDomListener(marker,'click',function(){
-    if(currentInfoWindow){
-      currentInfoWindow.close();
+    if(prevInfoWindow){
+      prevInfoWindow.close();
     }
     infowindow.open(map,marker);
-    currentInfoWindow = infowindow;
   })
+  return infowindow
 };
 
 google.maps.event.addDomListener(window, 'load', initialize);
