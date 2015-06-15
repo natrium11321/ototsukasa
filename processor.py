@@ -156,7 +156,6 @@ def mode_review():
 
 def mode_diffuse():
 
-  speaker.speak("消臭します")
   diffuser.diffuse()
   return MODE_HOME
 
