@@ -1,6 +1,6 @@
 # coding: UTF-8
 import RPi.GPIO as GPIO
-import speaker
+from talk.speaker import Speaker
 import time
 basepin = 23
 interval = 10
