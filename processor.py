@@ -223,8 +223,15 @@ def main():
         print "!---[BUG] This cannot happen."
         mode = MODE_HOME
       if not getHuman():
-        mode = MODE_LOCKED
-        db.update_status(False)
+        if counter < 1000:
+          counter += 1
+        else:
+          #1000ループ連続で人がいないときはトイレを解放
+          mode = MODE_LOCKED
+          db.update_status(False)
+        print counter #for test
+      else:
+        counter = 0
 
   #end while
 
