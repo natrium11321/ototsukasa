@@ -8,6 +8,7 @@ from talk.unlocker import Unlocker
 from talk.speaker import Speaker
 from hardware.getHuman import getHuman
 from hardware import LED
+from hardware.diffuser import Diffuser
 import time
 
 #---- enumeration ----
@@ -18,6 +19,7 @@ MODE_HOME = 1
 MODE_SEARCH = 2
 MODE_PLAY = 3
 MODE_REVIEW = 4
+MODE_DIFFUSE = 5
 
 MAX_RETRY = 3
 
@@ -28,6 +30,7 @@ db = Database('157.82.5.176')
 unlocker = Unlocker(db)
 drowner = Drowner(db)
 speaker = Speaker()
+diffuser = Diffuser()
 
 #( get_input : unit -> (string | None) )
 def get_input():
@@ -151,6 +154,13 @@ def mode_review():
       return MODE_HOME
 
 
+def mode_diffuse():
+
+  speaker.speak("消臭します")
+  diffuser.diffuse()
+  return MODE_HOME
+
+
 #( mode_home : unit -> mode )
 def mode_home():
 
@@ -176,6 +186,8 @@ def mode_home():
       return MODE_PLAY
     elif u"評価" in words_dict['all']:
       return MODE_REVIEW
+    elif u"消臭" in words_dict['all']:
+      return MODE_DIFFUSE
     else:
       print "!---No command recognized."
       return MODE_HOME
@@ -204,6 +216,8 @@ def main():
         mode = mode_play()
       elif mode == MODE_REVIEW:
         mode = mode_review()
+      elif mode == MODE_DIFFUSE:
+        mode = mode_diffuse()
       else:
         print "!---[BUG] This cannot happen."
         mode = MODE_HOME
