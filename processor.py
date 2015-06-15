@@ -10,6 +10,8 @@ from hardware.getHuman import getHuman
 from hardware import LED
 from hardware.diffuser import Diffuser
 import time
+import sys
+import argparse
 
 #---- enumeration ----
 MODE_UNLOCK = -2
@@ -26,9 +28,6 @@ MAX_RETRY = 3
 #---- initialize ----
 listener = Listener(600)
 comprehender = Comprehender()
-db = Database('157.82.7.62')
-unlocker = Unlocker(db)
-drowner = Drowner(db)
 speaker = Speaker()
 diffuser = Diffuser(speaker)
 
@@ -230,6 +229,21 @@ def main():
   speaker.speak("さよなら")
   return
 
+
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--serverip', required=True)
+
+    args = parser.parse_args()
+
+    # load db, unlocker and drowner
+    global db, unlocker, drowner
+    db = Database(args.serverip)
+    unlocker = Unlocker(db)
+    drowner = Drowner(db)
+
+
 #---- execute ----
 if __name__ == "__main__":
+  parse_arguments()
   main()
