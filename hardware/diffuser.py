@@ -10,7 +10,7 @@ class Diffuser:
 	def __init__(self):
 		pass
 	
-	def run():
+	def run(self):
 		"""
 		call aroma diffuser
 		"""
@@ -21,5 +21,5 @@ class Diffuser:
 		GPIO.output(basepin, GPIO.LOW)
 		GPIO.cleanup()
 	
-	def diffuse():
+	def diffuse(self):
 		threading.Thread(target = run).start()
