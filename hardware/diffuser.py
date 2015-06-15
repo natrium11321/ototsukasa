@@ -22,4 +22,4 @@ class Diffuser:
 		GPIO.cleanup()
 	
 	def diffuse(self):
-		threading.Thread(target = run).start()
+		threading.Thread(target = self.run).start()
