@@ -10,6 +10,8 @@ from hardware.getHuman import getHuman
 from hardware import LED
 from hardware.diffuser import Diffuser
 import time
+import sys
+import argparse
 
 #---- enumeration ----
 MODE_UNLOCK = -2
@@ -26,11 +28,8 @@ MAX_RETRY = 3
 #---- initialize ----
 listener = Listener(600)
 comprehender = Comprehender()
-db = Database('157.82.5.176')
-unlocker = Unlocker(db)
-drowner = Drowner(db)
 speaker = Speaker()
-diffuser = Diffuser()
+diffuser = Diffuser(speaker)
 
 #( get_input : unit -> (string | None) )
 def get_input():
@@ -59,6 +58,7 @@ def deal_with_no_recognition(refnorecogn):
   refnorecogn += 1
   if refnorecogn < MAX_RETRY:
     print ("!---No word recognized.")
+    speaker.speak("もう一度言ってください")
     return
   else:
     print ("!---No word recognized for three consecutive times.")
@@ -151,12 +151,12 @@ def mode_review():
     else:
       #review登録
       db.register_review(result)
+      speaker.speak("レビューを登録しました。")
       return MODE_HOME
 
 
 def mode_diffuse():
 
-  speaker.speak("消臭します")
   diffuser.diffuse()
   return MODE_HOME
 
@@ -172,10 +172,11 @@ def mode_home():
 
   if result is None:
     print ("!---No word recognized.")
+    speaker.speak("もう一度言ってください")
     return MODE_HOME
   else:
     words_dict = comprehender.comprehend(result)
-    #print ("[" + (" ".join(words_dict['all']).encode("utf-8")) + "]")
+    print ("[" + (" ".join(words_dict['all']).encode("utf-8")) + "]")
 
     #( 超絶単純な判定によるコマンド認識 )
     if u"終了" in words_dict['all']:
@@ -186,7 +187,7 @@ def mode_home():
       return MODE_PLAY
     elif u"評価" in words_dict['all']:
       return MODE_REVIEW
-    elif u"消臭" in words_dict['all']:
+    elif u"臭" in words_dict['all'] or u"消臭" in words_dict['all']:
       return MODE_DIFFUSE
     else:
       print "!---No command recognized."
@@ -200,6 +201,8 @@ def main():
       LED.LEDoff(c)
 
   speaker.speak("こんにちは！")
+
+  counter = 0
 
   while mode != MODE_QUIT:
 
@@ -222,8 +225,14 @@ def main():
         print "!---[BUG] This cannot happen."
         mode = MODE_HOME
       if not getHuman():
-        mode = MODE_LOCKED
-        db.update_status(False)
+        if counter < 5:
+          counter += 1
+        else:
+          #5ループ連続で人がいないときはトイレを解放
+          mode = MODE_LOCKED
+          db.update_status(False)
+      else:
+        counter = 0
 
   #end while
 
@@ -231,6 +240,21 @@ def main():
   speaker.speak("さよなら")
   return
 
+
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--serverip', required=True)
+
+    args = parser.parse_args()
+
+    # load db, unlocker and drowner
+    global db, unlocker, drowner
+    db = Database(args.serverip)
+    unlocker = Unlocker(db)
+    drowner = Drowner(db)
+
+
 #---- execute ----
 if __name__ == "__main__":
+  parse_arguments()
   main()
