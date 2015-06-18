@@ -1,90 +1,69 @@
 SELECT
-  main.pos_id
-  ,pos_lat
-  ,pos_lng
-  ,num
-  ,empty_num
-  ,occupied_num
-  ,reserved_num
+  t.id
+  ,t.pos_id
+  ,lat
+  ,lng
+  ,name
+  ,sex
   ,comment
+  ,rev.updatetime AS reviewedtime
+  ,CASE
+    WHEN empty = 'Occupied' THEN 'Occupied' WHEN
+      empty = 'Empty' AND  TIMEDIFF(CURRENT_TIMESTAMP,reservedtime) < '00:10:00'
+      THEN 'Reserved'
+    ELSE 'Empty'
+   END AS toilet_status
 FROM
-  (
-  SELECT
-    pos_id
-    ,pos_lat
-    ,pos_lng
-    ,COUNT(*) AS num
-    ,COUNT(toilet_status = 'Empty' or NULL) AS empty_num
-    ,COUNT(toilet_status = 'Occupied' or NULL) AS occupied_num
-    ,COUNT(toilet_status = 'Reserved' or NULL) AS reserved_num
-  FROM
-    (
-    SELECT
-      t.id
-      ,pos_id
-      ,pos_lat
-      ,pos_lng
-      ,CASE WHEN empty = 'Occupied' THEN 'Occupied' WHEN empty = 'Empty' AND  TIMEDIFF(CURRENT_TIMESTAMP,reservedtime) < '00:10:00' THEN 'Reserved' ELSE 'Empty' END AS toilet_status
-    FROM
-      (
-        SELECT
-          id
-          ,pos_id
-          ,pos_lat
-          ,pos_lng
-        FROM
-          toilets
-      ) t
-    LEFT JOIN
-      (
-        SELECT
-          toilet_id
-          ,empty
-        FROM
-          status
-          AS a
-        WHERE
-          updatetime = (
-            SELECT
-              MAX(updatetime)
-            FROM
-              status
-              AS b
-            WHERE
-              a.toilet_id = b.toilet_id
-          )
-      ) s
-    ON
-      t.id = s.toilet_id
-    LEFT JOIN
-      (
-        SELECT
-          toilet_id
-          ,updatetime AS reservedtime
-        FROM
-          reservations AS a
-        WHERE
-          updatetime = (
-            SELECT
-              MAX(updatetime)
-            FROM
-              reservations
-              AS b
-            WHERE
-              a.toilet_id = b.toilet_id
-          )
-      ) r
-    ON
-      t.id = r.toilet_id
-    ) sub
-  GROUP BY
-    pos_id,pos_lat,pos_lng
-  ) main
+  toilets AS t
 LEFT JOIN
   (
     SELECT
-      pos_id
-      ,comment
+      toilet_id
+      ,empty
+    FROM
+      status
+      AS a
+    WHERE
+      updatetime = (
+        SELECT
+          MAX(updatetime)
+        FROM
+          status
+          AS b
+        WHERE
+          a.toilet_id = b.toilet_id
+      )
+  ) s
+ON
+  t.id = s.toilet_id
+LEFT JOIN
+  (
+    SELECT
+      toilet_id
+      ,updatetime AS reservedtime
+    FROM
+      reservations AS a
+    WHERE
+      updatetime = (
+        SELECT
+          MAX(updatetime)
+        FROM
+          reservations
+          AS b
+        WHERE
+          a.toilet_id = b.toilet_id
+      )
+  ) r
+ON
+  t.id = r.toilet_id
+LEFT JOIN
+  location AS l
+ON
+  t.pos_id = l.pos_id
+LEFT JOIN
+  (
+    SELECT
+      *
     FROM
       reviews AS a
     WHERE
@@ -96,7 +75,6 @@ LEFT JOIN
         WHERE
           a.pos_id = b.pos_id
       )
-  ) sub
+  ) AS rev
 ON
-  main.pos_id = sub.pos_id
-;
+  t.pos_id = rev.pos_id

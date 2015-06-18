@@ -5,16 +5,11 @@ FROM
   SELECT
     t.id AS toilet_id
     ,pos_id
-    ,pos_lat
-    ,pos_lng
     ,CASE WHEN empty = 'Occupied' THEN 'Occupied' WHEN empty = 'Empty' AND  TIMEDIFF(CURRENT_TIMESTAMP,reservedtime) < '00:10:00' THEN 'Reserved' ELSE 'Empty' END AS toilet_status
   FROM
     (
       SELECT
-        id
-        ,pos_id
-        ,pos_lat
-        ,pos_lng
+        *
       FROM
         toilets
     ) t

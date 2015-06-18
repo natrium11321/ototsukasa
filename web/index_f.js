@@ -10,7 +10,7 @@ function initialize() {
       mapOptions);
 
   var currentInfoWindow = null;
-  $.getJSON("/cgi-bin/get_info.py?sex=M",function(data){
+  $.getJSON("/cgi-bin/get_info.py?sex=F",function(data){
     for (var i = 0; i < data.length ; i++){
       info = data[i];
       makeMarker(info);
@@ -49,7 +49,7 @@ function initialize() {
 
     //空きがあるときは予約ボタン
     if (info["empty_num"] > 0){
-      content +=   '<p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="sex" value="M"><input type="hidden" name="pos_id" value=' + info["pos_id"] + '><div class="buttonarea"><input type="submit" value="予約" class="btn btn-default"></div></form></p>'
+      content +=   '<p><form action="/cgi-bin/reserve.py" method="POST"><input type="hidden" name="sex" value="F"><input type="hidden" name="pos_id" value=' + info["pos_id"] + '><div class="buttonarea"><input type="submit" value="予約" class="btn btn-default"></div></form></p>'
     }
 
     var marker = new google.maps.Marker({
