@@ -20,9 +20,9 @@ function initialize() {
   function makeMarker(info) {
 
     //トイレの状態を表すピクトグラム
-    var empty ="white.png";
-    var occupied = "red.png";
-    var reserved = "yellow.png";
+    var empty ="logo/pictogram_free.svg";
+    var occupied = "logo/pictogram_used.svg";
+    var reserved = "logo/pictogram_reserved.svg";
 
     var icon;
     if (info["empty_num"] == 0){
