@@ -11,7 +11,7 @@ class Database:
     # constructor with connection to the host
     def __init__(self, host):
         self.connect(host)
-        self.MY_TOILET_ID = 3
+        self.MY_TOILET_ID = 1
         self.MY_POS_ID = 1
 
     # destructor
